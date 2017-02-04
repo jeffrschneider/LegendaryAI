@@ -1,0 +1,2 @@
+# LegendaryAI
+open code 
