@@ -3,6 +3,11 @@ import java.util.Scanner;
 import java.sql.*;
 import java.math.BigDecimal;
 public class WordTupleConnectionTester {
+	/**
+	 * This is just a test function to test WordTupleConnection.java and QueryKit.java. It doubles as example code for those who are stuck trying to understand my code. 
+	 * @param String[] args unused
+	 * @exception Exception I didn't feel like coding try/catches for this.
+	 */
 	public static void main(final String[] args) throws Exception {
 		final Scanner input = new Scanner(System.in);
 		System.out.println("username:");
@@ -13,10 +18,12 @@ public class WordTupleConnectionTester {
 		final String domain = input.nextLine();
 		System.out.println("database:");
 		final String database = input.nextLine();
+		
 		final WordTupleConnection tester = WordTupleConnection.MakeWordTupleConnection(username, password, domain, database, WordTupleConnection.databaseMode.MySQL);
 		ResultSet results = tester.query("SELECT COUNT(*) AS 'k' FROM `2Grams`;");
 		results.first();
 		System.out.println(results.getInt("k"));
+		
 		QueryKit qk = new QueryKit(tester);
 		System.out.println(qk.ngram2Pct("of", "the"));
 		final String[] strings = qk.getFinalWordFromNGram2("going");
@@ -24,6 +31,7 @@ public class WordTupleConnectionTester {
 			System.out.println(k);
 		}
 		tester.close();
+		
 		input.close();
 		return;
 	}
