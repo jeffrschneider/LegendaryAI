@@ -18,7 +18,7 @@ public class QueryKit {
 		database = db;
 	}
 	private QueryKit() throws Exception {
-		throw new Exception("This should never be seen.");
+		throw new Exception("This should never be seen. QueryKit.QueryKit()");
 	}
 	/**
 	 * Takes a set of 2 words, and returns a BigDecimal which contains how often this combination of words is, compared to all combinations of words in the database.
@@ -85,9 +85,8 @@ public class QueryKit {
 				result.add(r.getString(col));
 			}
 			return result.toArray(new String[result.size()]);
-		} else {
-			return null;
-		}
+		} 
+		return null;
 	}
 	/**
 	 * Takes a set of 4 words, and returns an array of strings which are the words that are known to follow, sorted by how likely they are to follow said set of words, in descending order.

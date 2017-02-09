@@ -54,13 +54,13 @@ public class WordTupleConnection {
 		domain = _domain;
 		databasename = _databasename;
 		databaseType = _connectionType;
-		start();
+		open();
 	}
 	/**
 	 * Attempts to start the connection to the database. Note that this is automatically called when a new WordTupleConnection object is constructed.
 	 * @exception Exception This exception will be called if the databaseMode of the connection is not yet supported, an unknown type of databaseMode is used, or if there is an error when attempting to connect to the database. The connection error may be caused by network issues, bad username/password combinations, a bad address, an incorrect name of the database, or some combination thereof.
 	 */
-	public final void start() throws Exception{
+	public final void open() throws Exception{
 		switch (databaseType) {
 			case Aurora:
 			case MySQL:
@@ -91,11 +91,11 @@ public class WordTupleConnection {
 	}
 	/**
 	 * This function is for situations where everything except the connection is stable, and it's preferable to try to salvage the connection, rather than just have everything fail. This function attempts to terminate the connection, and attempts to start it again, in that order.
-	 * @exception Exception any exception thrown by start() or close().
+	 * @exception Exception any exception thrown by open() or close().
 	 * */
 	public final void reset() throws Exception{
 		close();
-		start();
+		open();
 	}
 	/**
 	 * Runs a properly formatted SQL query on the connection in question.

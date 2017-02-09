@@ -26,6 +26,7 @@ public class WordTupleConnectionTester {
 		
 		final QueryKit qk = new QueryKit(tester);
 		System.out.println(qk.ngram2Pct("of", "the"));
+		
 		final String[] strings = qk.getFinalWordFromNGram2("going");
 		for (final String k: strings) {
 			System.out.println(k);
