@@ -40,7 +40,7 @@ public class QueryKit {
 	 * @exception An exception which may be thrown if there's an issue executing the query, or performing secondary processing on it.
 	 */
 	public final BigDecimal ngram3Pct(final String Word1, final String Word2, final String Word3) throws SQLException {
-		final ResultSet r = database.query("SELECT `Percent` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "');");
+		final ResultSet r = database.query("SELECT `Percent` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "');");
 		return PercentJob(r);
 	}
 	/**
@@ -53,7 +53,7 @@ public class QueryKit {
 	 * @exception An exception which may be thrown if there's an issue executing the query, or performing secondary processing on it.
 	 */
 	public final BigDecimal ngram4Pct(final String Word1, final String Word2, final String Word3, final String Word4) throws SQLException {
-		final ResultSet r = database.query("SELECT `Percent` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "');");
+		final ResultSet r = database.query("SELECT `Percent` FROM `4Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "');");
 		return PercentJob(r);
 	}
 	/**
@@ -67,7 +67,7 @@ public class QueryKit {
 	 * @exception An exception which may be thrown if there's an issue executing the query, or performing secondary processing on it.
 	 */
 	public final BigDecimal ngram5Pct(final String Word1, final String Word2, final String Word3, final String Word4, final String Word5) throws SQLException {
-		final ResultSet r = database.query("SELECT `Percent` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "');");
+		final ResultSet r = database.query("SELECT `Percent` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "');");
 		return PercentJob(r);
 	}
 	private static final BigDecimal PercentJob(final ResultSet r) throws SQLException {

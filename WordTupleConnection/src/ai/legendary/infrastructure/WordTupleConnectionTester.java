@@ -8,7 +8,7 @@ public class WordTupleConnectionTester {
 	 * @param String[] args unused
 	 * @exception Exception I didn't feel like coding try/catches for this.
 	 */
-	public static void main(final String[] args) throws Exception {
+	public final static void main(final String[] args) throws Exception {
 		final Scanner input = new Scanner(System.in);
 		System.out.println("username:");
 		final String username = input.nextLine();
@@ -20,11 +20,11 @@ public class WordTupleConnectionTester {
 		final String database = input.nextLine();
 		
 		final WordTupleConnection tester = WordTupleConnection.MakeWordTupleConnection(username, password, domain, database, WordTupleConnection.databaseMode.MySQL);
-		ResultSet results = tester.query("SELECT COUNT(*) AS 'k' FROM `2Grams`;");
+		final ResultSet results = tester.query("SELECT COUNT(*) AS 'k' FROM `2Grams`;");
 		results.first();
 		System.out.println(results.getInt("k"));
 		
-		QueryKit qk = new QueryKit(tester);
+		final QueryKit qk = new QueryKit(tester);
 		System.out.println(qk.ngram2Pct("of", "the"));
 		final String[] strings = qk.getFinalWordFromNGram2("going");
 		for (final String k: strings) {

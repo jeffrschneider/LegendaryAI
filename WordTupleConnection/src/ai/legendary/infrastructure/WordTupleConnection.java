@@ -41,7 +41,7 @@ public class WordTupleConnection {
 	 * @return WordTupleConnection connection An already started WordTupleConnection.
 	 * @exception Exception An exception that may be thrown due to either an unsupported database type, or a failed connection start.
 	 */
-	public static WordTupleConnection MakeWordTupleConnection (final String username, final String password, final String domain, final String databasename, final databaseMode connectionType) throws Exception {
+	public static final WordTupleConnection MakeWordTupleConnection (final String username, final String password, final String domain, final String databasename, final databaseMode connectionType) throws Exception {
 		return new WordTupleConnection(username, password, domain, databasename, connectionType);
 	}
 	private String username = "", password = "", domain = "", databasename = "";
@@ -60,7 +60,7 @@ public class WordTupleConnection {
 	 * Attempts to start the connection to the database. Note that this is automatically called when a new WordTupleConnection object is constructed.
 	 * @exception Exception This exception will be called if the databaseMode of the connection is not yet supported, an unknown type of databaseMode is used, or if there is an error when attempting to connect to the database. The connection error may be caused by network issues, bad username/password combinations, a bad address, an incorrect name of the database, or some combination thereof.
 	 */
-	public void start() throws Exception{
+	public final void start() throws Exception{
 		switch (databaseType) {
 			case Aurora:
 			case MySQL:
@@ -85,7 +85,7 @@ public class WordTupleConnection {
 	 * Terminates this connection. Note that if this is never called for this instance, the garbage collector may or may not call it.
 	 * @exception Exception A possible exception from internal objects.
 	 */
-	public void close() throws Exception{
+	public final void close() throws Exception{
 		conn.close();
 		AmOpen = false;
 	}
@@ -93,7 +93,7 @@ public class WordTupleConnection {
 	 * This function is for situations where everything except the connection is stable, and it's preferable to try to salvage the connection, rather than just have everything fail. This function attempts to terminate the connection, and attempts to start it again, in that order.
 	 * @exception Exception any exception thrown by start() or close().
 	 * */
-	public void reset() throws Exception{
+	public final void reset() throws Exception{
 		close();
 		start();
 	}
@@ -103,7 +103,7 @@ public class WordTupleConnection {
 	 * @return ResultSet The results of the query, which will have 0 or more results. 
 	 * @exception Exception An exception may be thrown if the query is improperly formatted to the point that the server can not understand it.
 	 */
-	public ResultSet query (final String QueryString) throws SQLException {
+	public final ResultSet query (final String QueryString) throws SQLException {
 		return conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery(QueryString);
 	}
 	protected void finalize() throws Exception{
