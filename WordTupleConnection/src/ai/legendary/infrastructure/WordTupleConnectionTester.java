@@ -18,21 +18,44 @@ public class WordTupleConnectionTester {
 		final String domain = input.nextLine();
 		System.out.println("database:");
 		final String database = input.nextLine();
+		System.out.println();
 		
 		final WordTupleConnection tester = WordTupleConnection.MakeWordTupleConnection(username, password, domain, database, WordTupleConnection.databaseMode.MySQL);
 		final ResultSet results = tester.query("SELECT COUNT(*) AS 'k' FROM `2Grams`;");
 		results.first();
 		System.out.println(results.getInt("k"));
+		System.out.println();
 		
 		final QueryKit qk = new QueryKit(tester);
 		System.out.println(qk.ngram2Pct("of", "the"));
-		
+		System.out.println();
 		final String[] strings = qk.getFinalWordFromNGram2("going");
 		for (final String k: strings) {
 			System.out.println(k);
 		}
-		tester.close();
+		System.out.println();
+
+		System.out.println(qk.ngram2Pct("clown", "disco"));
+		System.out.println();
 		
+		System.out.println(qk.ngram3Pct("toilet", "p*", "a%"));
+		System.out.println();
+
+		final String[] strings2 = qk.getFinalWordFromNGram3("Merkle", "");
+		if (strings2 != null) {
+			for (final String k: strings2) {
+				System.out.println(k);
+			}
+		} else {
+			System.out.println("NULL");
+		}
+		System.out.println();
+		
+		
+		
+		
+		tester.reset();
+		tester.close();
 		input.close();
 		return;
 	}

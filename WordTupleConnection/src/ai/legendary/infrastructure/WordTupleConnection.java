@@ -95,6 +95,7 @@ public class WordTupleConnection {
 	 * */
 	public final void reset() throws Exception{
 		close();
+		Thread.sleep(4000);
 		open();
 	}
 	/**
