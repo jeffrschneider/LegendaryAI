@@ -15,6 +15,11 @@ public class stringUtils {
 		}
 		return URLEncoder.encode(src, "UTF-8").replaceAll("\\+","%20");
 	}
+	/**
+	 * A utility function which takes a sentence and converts it into the array-of-words format that SentenceCorrector prefers. It also corrects case.
+	 * @param String src the base string.
+	 * @return String result the result.
+	 */
 	public static final String[] convertToSentence(final String src) {
 		String phase2 = src.replaceAll("\\,"," ").replaceAll("\\."," ").replaceAll("\\?"," ").replaceAll("\\@"," at ").replaceAll("n\'t"," n\'t").replaceAll("\\$"," dollars ").replaceAll("\\%"," percent ").replaceAll("\\&"," and ").replaceAll("\\-","").replaceAll("\\:"," ").replaceAll("\\;"," ").replaceAll("\""," ").replaceAll("\\!"," ").replaceAll("\t"," ");
 		while (phase2.contains("  ")) {

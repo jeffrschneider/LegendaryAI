@@ -134,16 +134,12 @@ public class QueryKit {
 		final ResultSet r = database.query("SELECT `Word2` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word2");
 	}
-	
-	public final int getFirstFailurePoint (final String[] Sentence) throws Exception {
-		for (int index = 1; index < Sentence.length; index++) {
-			final BigDecimal r = ngram2Pct(Sentence[index-1], Sentence[index]);
-			if (!(r.equals(NONE))) {
-				return index-1;
-			}
-		}
-		return -1;
-	}
+	/**
+	 * Takes a sentence in the form of an array of strings of words, and returns an array of integers which are objectifications of integers which are indexes of word-choice errors.
+	 * @param String[] an array of words in String format.
+	 * @return Integer[] an array of Integer Objects which are indexes of vocabulary failures. Ideally, these would be ints, but Java is asinine. 
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public final Integer[] getFailurePoints (final String[] Sentence) throws Exception {
 		final LinkedList<Integer> result = new LinkedList<Integer>();
 		for (int upperIndex = 1; upperIndex < Sentence.length; upperIndex++) {
@@ -154,29 +150,72 @@ public class QueryKit {
 		}
 		return result.toArray(new Integer[result.size()]);
 	}
-
+	/**
+	 * Takes 4 words in order in String format in order, and returns the words that are likely to precede them in descending likelihood. The result is in array-of-Strings format.
+	 * @param String Word2 Word #2 in the sequence.
+	 * @param String Word3 Word #3 in the sequence.
+	 * @param String Word4 Word #4 in the sequence.
+	 * @param String Word5 Word #5 in the sequence.
+	 * @return String[] suggestions Possibilities which are only correct from the perspective of previous data. 
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public final String[] getFirstWordFromNGram5 (final String Word2, final String Word3, final String Word4, final String Word5) throws SQLException {
 		final ResultSet r = database.query("SELECT `Word1` FROM `5Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
+	/**
+	 * Takes 3 words in order in String format in order, and returns the words that are likely to precede them in descending likelihood. The result is in array-of-Strings format.
+	 * @param String Word2 Word #2 in the sequence.
+	 * @param String Word3 Word #3 in the sequence.
+	 * @param String Word4 Word #4 in the sequence.
+	 * @return String[] suggestions Possibilities which are only correct from the perspective of previous data. 
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public final String[] getFirstWordFromNGram4 (final String Word2, final String Word3, final String Word4) throws SQLException {
 		final ResultSet r = database.query("SELECT `Word1` FROM `4Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
-	
+	/**
+	 * Takes 2 words in order in String format in order, and returns the words that are likely to precede them in descending likelihood. The result is in array-of-Strings format.
+	 * @param String Word2 Word #2 in the sequence.
+	 * @param String Word3 Word #3 in the sequence.
+	 * @return String[] suggestions Possibilities which are only correct from the perspective of previous data. 
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public final String[] getFirstWordFromNGram3 (final String Word2, final String Word3) throws SQLException {
 		final ResultSet r = database.query("SELECT `Word1` FROM `3Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
+	/**
+	 * Takes 1 word in String format, and returns the words that are likely to precede it in descending likelihood. The result is in array-of-Strings format.
+	 * @param String Word2 Word #2 in the sequence.
+	 * @return String[] suggestions Possibilities which are only correct from the perspective of previous data. 
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public final String[] getFirstWordFromNGram2 (final String Word2) throws SQLException {
 		final ResultSet r = database.query("SELECT `Word1` FROM `2Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
-	
+	/**
+	 * Takes two preceding words and two following words in order in String format, and returns all of the words which are known to possibly be in the middle, in descending likelihood of possibility, in String format.
+	 * @param String Word1 Word #1 in the sequence.
+	 * @param String Word2 Word #2 in the sequence.
+	 * @param String Word4 Word #4 in the sequence.
+	 * @param String Word5 Word #5 in the sequence.
+	 * @return String[] suggestions Possibilities which are only correct from the perspective of previous data. 
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public final String[] getMiddleWordFromNGram5 (final String Word1, final String Word2, final String Word4, final String Word5) throws SQLException {
 		final ResultSet r = database.query("SELECT `Word3` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word3");
 	}
+	/**
+	 * Takes one preceding word and one following word in order in String format, and returns all of the words which are known to possibly be in the middle, in descending likelihood of possibility, in String format.
+	 * @param String Word1 Word #1 in the sequence.
+	 * @param String Word3 Word #3 in the sequence.
+	 * @return String[] suggestions Possibilities which are only correct from the perspective of previous data. 
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public final String[] getMiddleWordFromNGram3 (final String Word1, final String Word3) throws SQLException {
 		final ResultSet r = database.query("SELECT `Word2` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word2");

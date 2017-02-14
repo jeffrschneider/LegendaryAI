@@ -4,10 +4,20 @@ import java.math.BigDecimal;
 public class SentenceCorrector {
 	private WordTupleConnection connection = null;
 	private QueryKit qk = null;
+	/**
+	 * A constructor. This takes the WordTupleConnection that is needed, and returns a new SentenceCorrector, which corrects bad word choice.
+	 * @param WordTupleConnection _connection The connection
+	 */
 	public SentenceCorrector(final WordTupleConnection _connection) {
 		connection = _connection;
 		qk = new QueryKit(connection);
 	}
+	/**
+	 * Takes a sentence in String format and returns an attempt at correcting the bad word choices of the sentence in String format.
+	 * @param String inputSentence a sentence with bad word choices.
+	 * @return String output. A sentence that may be better.
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public String getBestEffortFix(final String inputSentence) throws Exception {
 		final String[] sentence = stringUtils.convertToSentence(inputSentence);
 		LinkedList<String> suggested = getBestEffortFix(sentence);
@@ -19,6 +29,12 @@ public class SentenceCorrector {
 		}
 		return result.concat();
 	}
+	/**
+	 * Takes a sentence in array-of-Strings format and returns an attempt at correcting the bad word choices of the sentence in LinkedList<String> format.
+	 * @param String[] inputSentence a sentence with bad word choices.
+	 * @return LinkedList<String> output. A sentence that may be better.
+	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
+	 */
 	public LinkedList<String> getBestEffortFix(final String[] input) throws Exception {
 		LinkedList<String> result = new LinkedList<String>();
 		for (int index = 0; index < input.length; index++) {
