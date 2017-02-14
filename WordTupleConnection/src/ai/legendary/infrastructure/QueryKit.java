@@ -134,4 +134,51 @@ public class QueryKit {
 		final ResultSet r = database.query("SELECT `Word2` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word2");
 	}
+	
+	public final int getFirstFailurePoint (final String[] Sentence) throws Exception {
+		for (int index = 1; index < Sentence.length; index++) {
+			final BigDecimal r = ngram2Pct(Sentence[index-1], Sentence[index]);
+			if (!(r.equals(NONE))) {
+				return index-1;
+			}
+		}
+		return -1;
+	}
+	public final Integer[] getFailurePoints (final String[] Sentence) throws Exception {
+		final LinkedList<Integer> result = new LinkedList<Integer>();
+		for (int upperIndex = 1; upperIndex < Sentence.length; upperIndex++) {
+			final BigDecimal compareJob = ngram2Pct(Sentence[upperIndex-1], Sentence[upperIndex]);
+			if (compareJob.equals(NONE)) {
+				result.add(new Integer(upperIndex-1));
+			}
+		}
+		return result.toArray(new Integer[result.size()]);
+	}
+
+	public final String[] getFirstWordFromNGram5 (final String Word2, final String Word3, final String Word4, final String Word5) throws SQLException {
+		final ResultSet r = database.query("SELECT `Word1` FROM `5Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		return ToColumnList(r, "Word1");
+	}
+	public final String[] getFirstWordFromNGram4 (final String Word2, final String Word3, final String Word4) throws SQLException {
+		final ResultSet r = database.query("SELECT `Word1` FROM `4Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		return ToColumnList(r, "Word1");
+	}
+	
+	public final String[] getFirstWordFromNGram3 (final String Word2, final String Word3) throws SQLException {
+		final ResultSet r = database.query("SELECT `Word1` FROM `3Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		return ToColumnList(r, "Word1");
+	}
+	public final String[] getFirstWordFromNGram2 (final String Word2) throws SQLException {
+		final ResultSet r = database.query("SELECT `Word1` FROM `2Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		return ToColumnList(r, "Word1");
+	}
+	
+	public final String[] getMiddleWordFromNGram5 (final String Word1, final String Word2, final String Word4, final String Word5) throws SQLException {
+		final ResultSet r = database.query("SELECT `Word3` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		return ToColumnList(r, "Word3");
+	}
+	public final String[] getMiddleWordFromNGram3 (final String Word1, final String Word3) throws SQLException {
+		final ResultSet r = database.query("SELECT `Word2` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		return ToColumnList(r, "Word2");
+	}
 }

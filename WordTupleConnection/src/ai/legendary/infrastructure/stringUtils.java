@@ -15,4 +15,21 @@ public class stringUtils {
 		}
 		return URLEncoder.encode(src, "UTF-8").replaceAll("\\+","%20");
 	}
+	public static final String[] convertToSentence(final String src) {
+		String phase2 = src.replaceAll("\\,"," ").replaceAll("\\."," ").replaceAll("\\?"," ").replaceAll("\\@"," at ").replaceAll("n\'t"," n\'t").replaceAll("\\$"," dollars ").replaceAll("\\%"," percent ").replaceAll("\\&"," and ").replaceAll("\\-","").replaceAll("\\:"," ").replaceAll("\\;"," ").replaceAll("\""," ").replaceAll("\\!"," ").replaceAll("\t"," ");
+		while (phase2.contains("  ")) {
+			phase2 = phase2.replaceAll("  ", " ");
+		}
+		while (phase2.startsWith(" ")) {
+			phase2 = phase2.substring(1, phase2.length());
+		}
+		while (phase2.endsWith(" ")) {
+			phase2 = phase2.substring(0, phase2.length()-1);
+		}
+		final String[] cased = phase2.split(" ");
+		for (int index = 0; index < cased.length; index++) {
+			cased[index] = cased[index].toLowerCase();
+		}
+		return cased;
+	}
 }

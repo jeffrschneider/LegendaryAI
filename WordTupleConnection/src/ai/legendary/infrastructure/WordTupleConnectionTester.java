@@ -51,7 +51,8 @@ public class WordTupleConnectionTester {
 		}
 		System.out.println();
 		
-		
+		final SentenceCorrector sc = new SentenceCorrector(tester);
+		System.out.println(sc.getBestEffortFix("Power it up, and it them will go."));
 		
 		
 		tester.reset();
