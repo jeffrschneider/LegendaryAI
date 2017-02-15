@@ -64,119 +64,106 @@ public class SentenceCorrector {
 		}
 		return result;
 	}
-	private void replaceMostLikely(LinkedList<String> words, final int index) throws Exception {
-		if ((index > 1) && (index < (words.size()-1))) {
-			final String[] a = qk.getMiddleWordFromNGram5(words.get(index-2), words.get(index-1), words.get(index+1), words.get(index+2));
-			if (a != null) {
-				words.set(index, a[0]);
-				return;
+	private static final String getMostLikelyIntersection(final String[] a, final String[] b) {
+		if (b==null) {
+			if (a==null) {
+				return "a";
 			}
-			final String[] b = qk.getMiddleWordFromNGram3(words.get(index-1), words.get(index+1));
-			if (b != null) {
-				words.set(index, b[0]);
-				return;
-			}
+			return a[0];
 		}
-		if ((index > 0) && (index < (words.size()-1)) ) {
-			final String[] b = qk.getMiddleWordFromNGram3(words.get(index-1), words.get(index+1));
-			if (b != null) {
-				words.set(index, b[0]);
-				return;
-			}
+		if (a==null) {
+			return b[0];
 		}
-		if (index > 0) {
-			final String[] d = qk.getFinalWordFromNGram2(words.get(index-1)); 
-			if (d != null) {
-				words.set(index, (d)[0]);
-				return;
+		if (b.length==0) {
+			if (a.length==0) {
+				return "a";
 			}
+			return a[0];
 		}
-		switch (words.size()) {
-			case 1:
-				return;
-			case 5:
-			default:
-				final String[] a = qk.getFirstWordFromNGram5(words.get(index+1), words.get(index+2), words.get(index+3), words.get(index+4));
-				if (a != null) {
-					words.set(index, a[0]);
-					return;
+		if (a.length==0) {
+			return b[0];
+		}
+		for (int indexA = 0; indexA < a.length; indexA++) {
+			for (int indexB = 0; indexB < b.length; indexB++) {
+				if (a[indexA].equals(b[indexB])) {
+					return a[indexA];
 				}
+			}
+		}
+		return a[0];
+	}
+	private final String[] getFollowersFromWord(LinkedList<String> words, final int index) throws Exception {
+		int following = (words.size() - index) - 1;
+		if (following > 4) {
+			following = 4;
+		}
+		String[] result = null;
+		switch(following) {
 			case 4:
-				final String[] b = qk.getFirstWordFromNGram4(words.get(index+1), words.get(index+2), words.get(index+3));
-				if (b != null) {
-					words.set(index, b[0]);
-					return;
+				result = qk.getFirstWordFromNGram5(words.get(index+1), words.get(index+2), words.get(index+3), words.get(index+4));
+				if (result != null) {
+					return result;
 				}
 			case 3:
-				final String[] c = qk.getFirstWordFromNGram3(words.get(index+1), words.get(index+2));
-				if (c != null) {
-					words.set(index, c[0]);
-					return;
+				result = qk.getFirstWordFromNGram4(words.get(index+1), words.get(index+2), words.get(index+3));
+				if (result != null) {
+					return result;
 				}
 			case 2:
-				words.set(index, (qk.getFirstWordFromNGram2(words.get(index+1)))[0]);
-				return;
+				result = qk.getFirstWordFromNGram3(words.get(index+1), words.get(index+2));
+				if (result != null) {
+					return result;
+				}
+			case 1:
+				result = qk.getFirstWordFromNGram2(words.get(index+1));		
+				if (result != null) {
+					return result;
+				}	
+			default:
+			case 0:
+				return new String[] {words.get(index)} ;
+				
 		}
-		//return;
+	}
+	private final String[] getPrecedersFromWord(LinkedList<String> words, final int index) throws Exception {
+		final int refined = Math.min(index, 4);
+		String[] result = null;
+		switch(refined) {
+			case 4:
+				result = qk.getFinalWordFromNGram5(words.get(index-4), words.get(index-3), words.get(index-2), words.get(index-1));
+				if (result != null) {
+					return result;
+				}
+			case 3:
+				result = qk.getFinalWordFromNGram4(words.get(index-3), words.get(index-2), words.get(index-1));
+				if (result != null) {
+					return result;
+				}	
+			case 2:
+				result = qk.getFinalWordFromNGram3(words.get(index-2), words.get(index-1));
+				if (result != null) {
+					return result;
+				}
+			case 1:
+				result = qk.getFinalWordFromNGram2(words.get(index-1));
+				if (result != null) {
+					return result;
+				}	
+			default:
+			case 0:
+				return new String[] {words.get(index)} ;
+		}
+	}
+	private void replaceMostLikely(LinkedList<String> words, final int index) throws Exception {
+		final String[] preceders = getPrecedersFromWord(words, index);
+		final String[] followers = getFollowersFromWord(words, index);
+		final String result = getMostLikelyIntersection(preceders, followers);
+		words.set(index, result);
 	}
 	private void attemptInjection(LinkedList<String> words, final int index) throws Exception {
-		if ((index > 1) && (index < (words.size()-1))) {
-			final String[] a = qk.getMiddleWordFromNGram5(words.get(index-2), words.get(index-1), words.get(index), words.get(index+1));
-			if (a != null) {
-				words.add(index, a[0]);
-				return;
-			}
-			final String[] b = qk.getMiddleWordFromNGram3(words.get(index-1), words.get(index));
-			if (b != null) {
-				words.add(index, b[0]);
-				return;
-			}
-		}
-		if ((index > 0) && (index < (words.size()-1)) ) {
-			final String[] b = qk.getMiddleWordFromNGram3(words.get(index-1), words.get(index));
-			if (b != null) {
-				words.add(index, b[0]);
-				return;
-			}
-		}
-		if (index > 0) {
-			final String[] d = qk.getFinalWordFromNGram2(words.get(index-1)); 
-			if (d != null) {
-				words.add(index, (d)[0]);
-				return;
-			}
-		}
-		switch (words.size()) {
-			case 5:
-			default:
-				final String[] a = qk.getFirstWordFromNGram5(words.get(0), words.get(1), words.get(2), words.get(3)); 
-				if (a != null) {
-					words.add(index, (a)[0]);
-					return;
-				}
-			case 4:
-				final String[] b = qk.getFirstWordFromNGram4(words.get(0), words.get(1), words.get(2)); 
-				if (b != null) {
-					words.add(index, (b)[0]);
-					return;
-				}
-			case 3:
-				final String[] c = qk.getFirstWordFromNGram3(words.get(0), words.get(1)); 
-				if (c != null) {
-					words.add(index, (c)[0]);
-					return;
-				}
-			case 2:
-				final String[] d = qk.getFirstWordFromNGram2(words.get(0)); 
-				if (d != null) {
-					words.add(index, (d)[0]);
-					return;
-				}
-			case 1:
-			case 0:
-				words.add("a");
-				return;
-		}
-		//return;
+		final String[] preceders = getPrecedersFromWord(words, index);
+		final String[] followers = getFollowersFromWord(words, index-1);
+		final String result = getMostLikelyIntersection(preceders, followers);
+		words.add(index, result);
 	}
 }
