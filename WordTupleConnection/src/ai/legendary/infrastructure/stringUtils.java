@@ -21,7 +21,7 @@ public class stringUtils {
 	 * @return String result the result.
 	 */
 	public static final String[] convertToSentence(final String src) {
-		String phase2 = src.replaceAll("\\,"," ").replaceAll("\\."," ").replaceAll("\\?"," ").replaceAll("\\@"," at ").replaceAll("n\'t"," n\'t").replaceAll("\\$"," dollars ").replaceAll("\\%"," percent ").replaceAll("\\&"," and ").replaceAll("\\-","").replaceAll("\\:"," ").replaceAll("\\;"," ").replaceAll("\""," ").replaceAll("\\!"," ").replaceAll("\t"," ");
+		String phase2 = src.replaceAll("cannot","can not").replaceAll("\\,"," ").replaceAll("\\."," ").replaceAll("\\?"," ").replaceAll("\\@"," at ").replaceAll("n\'t"," n\'t").replaceAll("\\$"," dollars ").replaceAll("\\%"," percent ").replaceAll("\\&"," and ").replaceAll("\\-","").replaceAll("\\:"," ").replaceAll("\\;"," ").replaceAll("\""," ").replaceAll("\\!"," ").replaceAll("\t"," ");
 		while (phase2.contains("  ")) {
 			phase2 = phase2.replaceAll("  ", " ");
 		}

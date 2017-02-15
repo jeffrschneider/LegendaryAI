@@ -40,12 +40,17 @@ public class SentenceCorrector {
 		for (int index = 0; index < input.length; index++) {
 			result.addLast(input[index]);
 		}
+		int oldHash = result.hashCode() - 1;
 		bodyLoop:
 		while (true) {
 			Integer[] failurePoints = qk.getFailurePoints(result.toArray(new String[result.size()]));
 			if (failurePoints.length==0) {
 				break bodyLoop;
 			}
+			if (oldHash==result.hashCode()) {
+				break bodyLoop;
+			}
+			oldHash = result.hashCode();
 			if (failurePoints.length==1) {
 				replaceMostLikely(result, failurePoints[0].intValue());
 				continue bodyLoop;
