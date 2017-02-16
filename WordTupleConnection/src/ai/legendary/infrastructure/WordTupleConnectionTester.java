@@ -77,6 +77,7 @@ public class WordTupleConnectionTester {
 		}
 		br.close();
 		
+		System.out.println(sc.getstatinfo());
 		
 		tester.reset();
 		tester.close();

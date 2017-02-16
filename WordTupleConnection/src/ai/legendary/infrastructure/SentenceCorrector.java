@@ -4,6 +4,35 @@ import java.math.BigDecimal;
 public class SentenceCorrector {
 	private WordTupleConnection connection = null;
 	private QueryKit qk = null;
+
+	private int use2 = 0;
+	private int use3 = 0;
+	private int use4 = 0;
+	private int use5 = 0;
+	private int use2pct = 0;
+	private int use3pct = 0;
+	private int use4pct = 0;
+	private int use5pct = 0;
+	private int sentenceCount = 0;
+	
+	/**
+	 * Returns information about what this instance of SentenceCorrector has had to do with various SQL jobs, as well as the number of times it's been used.
+	 * @return String result The string of the information.
+	 */
+	public final String getstatinfo () {
+		return
+				((("get words from NGram5: " + use5 + "\r\n") + 
+				("get words from NGram4: " + use4 + "\r\n")) + 
+				(("get words from NGram3: " + use3 + "\r\n") + 
+				("get words from NGram2: " + use2 + "\r\n"))) + 
+				(((("get percent from NGram5: " + use5 + "\r\n") + 
+				("get percent from NGram4: " + use4 + "\r\n")) + 
+				(("get percent from NGram3: " + use3 + "\r\n") + 
+				("get percent from NGram2: " + use2 + "\r\n"))) + 
+				("sentenceCount: " + sentenceCount + "\r\n"))
+				;
+	}
+	
 	/**
 	 * A constructor. This takes the WordTupleConnection that is needed, and returns a new SentenceCorrector, which corrects bad word choice.
 	 * @param WordTupleConnection _connection The connection
@@ -36,6 +65,7 @@ public class SentenceCorrector {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public LinkedList<String> getBestEffortFix(final String[] input) throws Exception {
+		sentenceCount++;
 		LinkedList<String> result = new LinkedList<String>();
 		for (int index = 0; index < input.length; index++) {
 			result.addLast(input[index]);
@@ -102,21 +132,25 @@ public class SentenceCorrector {
 			case 4:
 				result = qk.getFirstWordFromNGram5(words.get(index+1), words.get(index+2), words.get(index+3), words.get(index+4));
 				if (result != null) {
+					use5++;
 					return result;
 				}
 			case 3:
 				result = qk.getFirstWordFromNGram4(words.get(index+1), words.get(index+2), words.get(index+3));
 				if (result != null) {
+					use4++;
 					return result;
 				}
 			case 2:
 				result = qk.getFirstWordFromNGram3(words.get(index+1), words.get(index+2));
 				if (result != null) {
+					use3++;
 					return result;
 				}
 			case 1:
 				result = qk.getFirstWordFromNGram2(words.get(index+1));		
 				if (result != null) {
+					use2++;
 					return result;
 				}	
 			default:
@@ -132,21 +166,25 @@ public class SentenceCorrector {
 			case 4:
 				result = qk.getFinalWordFromNGram5(words.get(index-4), words.get(index-3), words.get(index-2), words.get(index-1));
 				if (result != null) {
+					use5++;
 					return result;
 				}
 			case 3:
 				result = qk.getFinalWordFromNGram4(words.get(index-3), words.get(index-2), words.get(index-1));
 				if (result != null) {
+					use4++;
 					return result;
 				}	
 			case 2:
 				result = qk.getFinalWordFromNGram3(words.get(index-2), words.get(index-1));
 				if (result != null) {
+					use3++;
 					return result;
 				}
 			case 1:
 				result = qk.getFinalWordFromNGram2(words.get(index-1));
 				if (result != null) {
+					use2++;
 					return result;
 				}	
 			default:
