@@ -28,7 +28,7 @@ public class QueryKit {
 	 * @exception An exception which may be thrown if there's an issue executing the query, or performing secondary processing on it.
 	 */
 	public final BigDecimal ngram2Pct(final String Word1, final String Word2) throws SQLException {
-		final ResultSet r = database.query("SELECT `Percent` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "');");
+		final ResultSet r = database.query("SELECT `Percent` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "');");
 		return PercentJob(r);
 	}
 	/**
@@ -40,7 +40,7 @@ public class QueryKit {
 	 * @exception An exception which may be thrown if there's an issue executing the query, or performing secondary processing on it.
 	 */
 	public final BigDecimal ngram3Pct(final String Word1, final String Word2, final String Word3) throws SQLException {
-		final ResultSet r = database.query("SELECT `Percent` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "');");
+		final ResultSet r = database.query("SELECT `Percent` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "');");
 		return PercentJob(r);
 	}
 	/**
@@ -53,7 +53,7 @@ public class QueryKit {
 	 * @exception An exception which may be thrown if there's an issue executing the query, or performing secondary processing on it.
 	 */
 	public final BigDecimal ngram4Pct(final String Word1, final String Word2, final String Word3, final String Word4) throws SQLException {
-		final ResultSet r = database.query("SELECT `Percent` FROM `4Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "');");
+		final ResultSet r = database.query("SELECT `Percent` FROM `4Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\'\'") + "');");
 		return PercentJob(r);
 	}
 	/**
@@ -67,7 +67,7 @@ public class QueryKit {
 	 * @exception An exception which may be thrown if there's an issue executing the query, or performing secondary processing on it.
 	 */
 	public final BigDecimal ngram5Pct(final String Word1, final String Word2, final String Word3, final String Word4, final String Word5) throws SQLException {
-		final ResultSet r = database.query("SELECT `Percent` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "');");
+		final ResultSet r = database.query("SELECT `Percent` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\'\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\'\'") + "');");
 		return PercentJob(r);
 	}
 	private static final BigDecimal PercentJob(final ResultSet r) throws SQLException {
@@ -98,7 +98,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFinalWordFromNGram5 (final String Word1, final String Word2, final String Word3, final String Word4) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word5` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word5` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word5");
 	}
 	/**
@@ -110,7 +110,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFinalWordFromNGram4 (final String Word1, final String Word2, final String Word3) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word4` FROM `4Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word4` FROM `4Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word4");
 	}
 	/**
@@ -121,7 +121,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFinalWordFromNGram3 (final String Word1, final String Word2) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word3` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word3` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word3");
 	}
 	/**
@@ -131,7 +131,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFinalWordFromNGram2 (final String Word1) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word2` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word2` FROM `2Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word2");
 	}
 	/**
@@ -145,7 +145,7 @@ public class QueryKit {
 		for (int upperIndex = 1; upperIndex < Sentence.length; upperIndex++) {
 			final BigDecimal compareJob = ngram2Pct(Sentence[upperIndex-1], Sentence[upperIndex]);
 			if (compareJob.equals(NONE)) {
-				result.add(new Integer(upperIndex-1));
+				result.add(new Integer(upperIndex));
 			}
 		}
 		return result.toArray(new Integer[result.size()]);
@@ -160,7 +160,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFirstWordFromNGram5 (final String Word2, final String Word3, final String Word4, final String Word5) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word1` FROM `5Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word1` FROM `5Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\'\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
 	/**
@@ -172,7 +172,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFirstWordFromNGram4 (final String Word2, final String Word3, final String Word4) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word1` FROM `4Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word1` FROM `4Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
 	/**
@@ -183,7 +183,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFirstWordFromNGram3 (final String Word2, final String Word3) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word1` FROM `3Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word1` FROM `3Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
 	/**
@@ -193,7 +193,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getFirstWordFromNGram2 (final String Word2) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word1` FROM `2Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word1` FROM `2Grams` WHERE (`Word2`='" + Word2.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word1");
 	}
 	/**
@@ -206,7 +206,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getMiddleWordFromNGram5 (final String Word1, final String Word2, final String Word4, final String Word5) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word3` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\\\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\\\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word3` FROM `5Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word2`='" + Word2.replaceAll("\'", "\'\'") + "' AND `Word4`='" + Word4.replaceAll("\'", "\'\'") + "' AND `Word5`='" + Word5.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word3");
 	}
 	/**
@@ -217,7 +217,7 @@ public class QueryKit {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public final String[] getMiddleWordFromNGram3 (final String Word1, final String Word3) throws SQLException {
-		final ResultSet r = database.query("SELECT `Word2` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\\\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\\\'") + "') ORDER BY `Percent` DESC;");
+		final ResultSet r = database.query("SELECT `Word2` FROM `3Grams` WHERE (`Word1`='" + Word1.replaceAll("\'", "\'\'") + "' AND `Word3`='" + Word3.replaceAll("\'", "\'\'") + "') ORDER BY `Percent` DESC;");
 		return ToColumnList(r, "Word2");
 	}
 }

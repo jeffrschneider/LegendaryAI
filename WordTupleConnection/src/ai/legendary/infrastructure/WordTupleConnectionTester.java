@@ -1,5 +1,8 @@
 package ai.legendary.infrastructure;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.sql.*;
 import java.math.BigDecimal;
 public class WordTupleConnectionTester {
@@ -51,8 +54,28 @@ public class WordTupleConnectionTester {
 		}
 		System.out.println();
 		
+		System.out.println("testfile location");
 		final SentenceCorrector sc = new SentenceCorrector(tester);
-		System.out.println(sc.getBestEffortFix("I cannot makes my way home."));
+		final BufferedReader br = new BufferedReader(new FileReader(new File(input.nextLine())));
+	 
+		while (true) {
+			final String lineA = br.readLine();
+			if (lineA==null) {
+				break;
+			}
+			final String lineB = br.readLine();
+			final String stringC = sc.getBestEffortFix(lineA);
+			System.out.println(stringC);
+			final String[] words = stringUtils.convertToSentence(lineB);
+			String stringd = words[0];
+			for (int index = 1; index < words.length; index++) {
+				stringd = stringd + (" " + words[index]);
+			}
+			System.out.println(stringd);
+			System.out.println(stringd.equals(stringC));
+			System.out.println();
+		}
+		br.close();
 		
 		
 		tester.reset();
