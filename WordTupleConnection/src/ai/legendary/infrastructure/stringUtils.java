@@ -37,4 +37,14 @@ public class stringUtils {
 		}
 		return cased;
 	}
+	public static final String join(final String[] input, final String joiner) {
+		if (input.length==0) {
+			return "";
+		} 
+		final SpeedConcat sc = (new SpeedConcat()).append(input[0]);
+		for (int index = 1; index < input.length; index++) {
+			sc.append(joiner).append(input[index]);
+		}
+		return sc.concat();
+	}
 }
