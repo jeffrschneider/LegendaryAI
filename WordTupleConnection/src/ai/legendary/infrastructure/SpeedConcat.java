@@ -1,7 +1,7 @@
 package ai.legendary.infrastructure;
 
 public class SpeedConcat {
-	private class Node {
+	private final class Node {
 		public String val = "";
 		public Node next = null;
 		public Node(final String in) {
@@ -20,6 +20,9 @@ public class SpeedConcat {
 	 * @return SpeedConcat this.
 	 */
 	public final SpeedConcat append(final Object o){
+		if (o==null) {
+			return this;
+		}
 		final String add = o.toString();
 		if (head==null) {
 			head = new Node(add);

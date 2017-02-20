@@ -12,6 +12,8 @@ const serverConfig = {
   passphrase: "D3@dH00k3r"
 };
 const errString = "{'statusCode': -1, 'err':'unable to parse request'}";
+const waitingString = "{'statusCode': 0, 'message':'Job is in queue, but started yet due to server limits.'}";
+const handlingString = "{'statusCode': 0, 'message':'Job is being processed, but is not completed yet.'}";
 https.createServer(serverConfig, function(request, response){
   var body = [];
   request.on('error', function(err) {
@@ -20,13 +22,13 @@ https.createServer(serverConfig, function(request, response){
       response.end();
     }
     console.log("network error");
+    console.log(err);
   }).on('data', function(chunk) {
     body.push(chunk);
   }).on('end', function() {
     body = Buffer.concat(body).toString();
     try {
       const input = JSON.parse(body);
-      var correction = "";
       const spawnString = launcherString + input.flawedString.split("{").join(" ").split("}").join(" ");
       exec(spawnString, function(error, stdout, stderr){
         if (error){
@@ -47,7 +49,7 @@ https.createServer(serverConfig, function(request, response){
           console.log(stderr);
           return;
         }
-        var responseData = {
+        const responseData = {
           statusCode: 1,
           result: stdout
         };

@@ -37,10 +37,22 @@ public class stringUtils {
 		}
 		return cased;
 	}
+	/**
+	 * A static reimplementation of Javascript's Array.join.
+	 * @param String[] input An array of Strings to be joined together.
+	 * @param String joiner A string to be used as the separating phrase. 
+	 * @return String result A single string of all of the members of input in order, separated by instances of joiner.
+	 */
 	public static final String join(final String[] input, final String joiner) {
+		if (input==null) {
+			return "";
+		}
 		if (input.length==0) {
 			return "";
 		} 
+		if (joiner==null) {
+			return join(input, "");
+		}
 		final SpeedConcat sc = (new SpeedConcat()).append(input[0]);
 		for (int index = 1; index < input.length; index++) {
 			sc.append(joiner).append(input[index]);
