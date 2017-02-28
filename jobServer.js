@@ -2,6 +2,7 @@
 const exec = require("child_process").exec;
 const https = require("https");
 const fs = require('fs');
+const url = require("url");
 const databaseConfig = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 const launcherString =
   ("java -jar usableInstance.jar " + ((databaseConfig.user + " ") + (databaseConfig.password + " "))) +
@@ -28,7 +29,7 @@ https.createServer(serverConfig, function(request, response){
   }).on('end', function() {
     body = Buffer.concat(body).toString();
     try {
-      const input = JSON.parse(body);
+      const input = url.parse(request.url, true).query;
       const spawnString = launcherString + input.flawedString.split("{").join(" ").split("}").join(" ");
       exec(spawnString, function(error, stdout, stderr){
         if (error){

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Proof of concept
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<textarea id="input"></textarea>
+<button id="attempt">fix</button>
+<iframe id="output"></iframe>
+<script>
+"use strict";
+const encode = function(str) {
+  return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+    return '%' + c.charCodeAt(0).toString(16);
+  });
+};
+$(document).ready(function(){
+  $("#attempt").click(function(){
+    window.location.assign(window.location.href.split("?")[0] + "?flawedString=" + encode(document.getElementById("input").value));
+  });
+});
+</script>
+</body>
+</html>

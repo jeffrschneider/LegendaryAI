@@ -33,6 +33,11 @@ public class SentenceCorrector {
 				;
 	}
 	
+	
+	public QueryKit getQueryKit() {
+		return qk;
+	}
+	
 	/**
 	 * A constructor. This takes the WordTupleConnection that is needed, and returns a new SentenceCorrector, which corrects bad word choice.
 	 * @param WordTupleConnection _connection The connection
@@ -48,13 +53,15 @@ public class SentenceCorrector {
 	 * @exception Exception This code may fail if there's a connection issue, or a postprocessing issue.
 	 */
 	public String getBestEffortFix(final String inputSentence) throws Exception {
+		if (inputSentence.equals("")) {
+			return "";
+		}
 		final String[] sentence = stringUtils.convertToSentence(inputSentence);
 		LinkedList<String> suggested = getBestEffortFix(sentence);
 		final SpeedConcat result = new SpeedConcat();
 		result.append(suggested.removeFirst());
 		while (suggested.size() > 0) {
-			result.append(" ");
-			result.append(suggested.removeFirst());
+			result.append(" ").append(suggested.removeFirst());
 		}
 		return result.concat();
 	}

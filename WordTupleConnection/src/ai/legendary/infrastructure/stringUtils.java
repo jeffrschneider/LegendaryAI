@@ -1,19 +1,32 @@
 package ai.legendary.infrastructure;
 
 import java.net.URLEncoder;
+import java.net.URLDecoder;
 
 public class stringUtils {
 	/**
 	 * A function which is identical to Java's URLEncoder.encode, except it doesn't have a special exception for space characters. It can also handle null values.
 	 * @param String src The source String.
 	 * @return String The result.
-	 * @exception What happens if there's a REGEX error or a URLEncoder error.
+	 * @exception Exception E What happens if there's a REGEX error or a URLEncoder error.
 	 */
 	public static final String urlEncode(final String src) throws Exception{
 		if (src==null) {
 			return "";
 		}
 		return URLEncoder.encode(src, "UTF-8").replaceAll("\\+","%20");
+	}
+	/**
+	 * A function which is identical to Java's URLDecoder.decdoe, except it doesn't have a special exception for space characters. It can also handle null values.
+	 * @param String src The source String.
+	 * @return String The result.
+	 * @exception Exception E What happens if there's a REGEX error or a URLDecoder error.
+	 */
+	public static final String urlDecode(final String src) throws Exception {
+		if (src==null) {
+			return "";
+		}
+		return URLDecoder.decode(src.replaceAll("\\%20","\\+"), "UTF-8");
 	}
 	/**
 	 * A utility function which takes a sentence and converts it into the array-of-words format that SentenceCorrector prefers. It also corrects case.
@@ -55,7 +68,7 @@ public class stringUtils {
 		}
 		final SpeedConcat sc = (new SpeedConcat()).append(input[0]);
 		for (int index = 1; index < input.length; index++) {
-			sc.append(joiner).append(input[index]);
+			sc.append(joiner + input[index]);
 		}
 		return sc.concat();
 	}

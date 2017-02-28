@@ -60,7 +60,7 @@ public class WordTupleConnection {
 	 * Attempts to start the connection to the database. Note that this is automatically called when a new WordTupleConnection object is constructed.
 	 * @exception Exception This exception will be called if the databaseMode of the connection is not yet supported, an unknown type of databaseMode is used, or if there is an error when attempting to connect to the database. The connection error may be caused by network issues, bad username/password combinations, a bad address, an incorrect name of the database, or some combination thereof.
 	 */
-	public final void open() throws Exception{
+	public final void open() throws Exception {
 		switch (databaseType) {
 			case Aurora:
 			case MySQL:
@@ -107,6 +107,10 @@ public class WordTupleConnection {
 	public final ResultSet query (final String QueryString) throws SQLException {
 		return conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery(QueryString);
 	}
+	/**
+	 * This function is only supposed to be called by the garbage collector when this WordTupleConnection is being flagged as free memory. When run, if this WordTupleConnection is not closed, it will attempt to close itself.
+	 * @exception Exception E An exception which may eb thrown if close() throws an Exception.
+	 */
 	protected void finalize() throws Exception{
 		if (AmOpen) {
 			close();

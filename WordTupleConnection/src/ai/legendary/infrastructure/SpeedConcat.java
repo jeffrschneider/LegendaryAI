@@ -37,6 +37,14 @@ public class SpeedConcat {
 		return this;
 	}
 	/**
+	 * Takes an int, makes a string from that int, appends the resulting string to the list of things to be concatenated, and returns this.
+	 * @param int i The int being made into a string and concatenated.
+	 * @return SpeedConcat this
+	 */
+	public final SpeedConcat append(final int i) {
+		return append(Integer.toString(i));
+	}
+	/**
 	 * Generates the resulting String in an A log2(B) banner.
 	 * @return String result the resulting String.
 	 */
