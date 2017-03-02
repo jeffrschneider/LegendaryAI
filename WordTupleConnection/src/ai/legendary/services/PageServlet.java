@@ -19,7 +19,10 @@ public class PageServlet extends HttpServlet {
 	String[] pages = null;
 	private static final long serialVersionUID = 1L;
 	private static final String page404 = "404 Error";
-	private static final String pageDirectory = "C:\\Users\\natew\\Desktop\\LegendaryAI\\outwardCode\\LegendaryAI\\WordTupleConnection\\WebContent\\WEB-INF\\classes\\ai\\legendary\\services\\";
+	//private static final String pageDirectory = "C:\\Users\\natew\\Desktop\\LegendaryAI\\outwardCode\\LegendaryAI\\WordTupleConnection\\WebContent\\WEB-INF\\classes\\ai\\legendary\\services\\";
+	//That's for testing.
+	private static final String pageDirectory = "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\WordTupleConnection\\WEB-INF\\classes\\ai\\legendary\\services\\";
+	//This is for production
 	private final static String readFile(final String fileName) {
 		try {
 			final SpeedConcat sc = new SpeedConcat();
