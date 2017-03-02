@@ -5,8 +5,16 @@
 <web-app>
 	<servlet>
 		<servlet-name>native</servlet-name>
-		<servlet-class>ai.legendary.infrastructure.NativeService</servlet-class>
+		<servlet-class>ai.legendary.services.PageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>scs</servlet-name>
+		<servlet-class>ai.legendary.services.SentenceCorrectionService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>scs</servlet-name>
+		<url-pattern>/WordTupleConnection/wordCorrect/*</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>native</servlet-name>
 		<url-pattern>/WordTupleConnection/*</url-pattern>

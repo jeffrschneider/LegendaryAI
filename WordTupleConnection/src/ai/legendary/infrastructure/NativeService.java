@@ -7,12 +7,11 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.servlet.annotation.WebServlet;
-@WebServlet(
+/*@WebServlet(
 		urlPatterns = "/*"
-		)
+		)*/
 public class NativeService extends HttpServlet {
 	private static final long serialVersionUID = 3L;
-	WordTupleConnection.databaseMode dbm = WordTupleConnection.databaseMode.MySQL;
 	/**
 	 * This function is called by the Servlet manager, "which is usually Tomcat", when this Server is started. It performs tasks that need to be performed when this is happening.
 	 */
@@ -48,7 +47,7 @@ public class NativeService extends HttpServlet {
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response){
 		try {
 			final PrintWriter writer = response.getWriter();
-			final WordTupleConnection wtc = WordTupleConnection.MakeWordTupleConnection(username, password, domain, database, dbm);
+			final WordTupleConnection wtc = ConnectionBuilder.build();
 			final QueryString qs = new QueryString(request.getQueryString());
 			final SentenceCorrector sc = new SentenceCorrector(wtc);
 			final String input = qs.get("flawedString");
