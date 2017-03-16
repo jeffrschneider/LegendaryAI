@@ -1,0 +1,1 @@
+Also, JavaScript was a well-known language, making Node.js immediately accessible to the entire web development community.
