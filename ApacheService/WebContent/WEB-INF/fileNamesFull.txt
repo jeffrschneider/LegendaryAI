@@ -1,0 +1,14 @@
+en-ner-date.bin
+en-ner-money.bin
+en-ner-location.bin
+en-ner-organization.bin
+en-ner-percentage.bin
+en-ner-person.bin
+en-ner-time.bin
+es-ner-location.bin
+es-ner-organization.bin
+es-ner-misc.bin
+es-ner-person.bin
+nl-ner-organization.bin
+nl-ner-misc.bin
+nl-ner-person.bin
