@@ -20,7 +20,7 @@ import ai.legendary.infrastructure.stringUtils;
 		urlPatterns = "/wordCorrect/*"
 		)
 public class SentenceCorrectionService extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 
 	/**
 	 * This function is called by the Servlet manager, "which is usually Tomcat", when this Server is shut down. It performs tasks that need to be performed when this is happening.
@@ -28,6 +28,9 @@ public class SentenceCorrectionService extends HttpServlet {
 	public void destroy(){
 		System.out.println("shutting down...");
 	}
+	/**
+	 * This function is called by the Servlet manager, "which is usually Tomcat", when this Server is started. It performs tasks that need to be performed when this is happening.
+	 */
 	public void init() throws ServletException {
 		System.out.println("starting...");
 	}
@@ -43,6 +46,11 @@ public class SentenceCorrectionService extends HttpServlet {
 		}
 		return result.append("\"] } ").concat();
 	}
+	/**
+	 * Handles a request for a correction job.
+	 * @param HttpServletRequest request The request object.
+	 * @param HttpServletResponse response The response object.
+	 */
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response){
 		try {
 			final PrintWriter writer = response.getWriter();
@@ -58,7 +66,7 @@ public class SentenceCorrectionService extends HttpServlet {
 		} catch (final Exception e) {
 			try {
 				e.printStackTrace(response.getWriter());
-				response.getWriter().print("{'statusCode': -1}");
+				response.getWriter().print("{\"statusCode\": -1}");
 				response.getWriter().close();
 			} catch (final IOException e1) {
 				e1.printStackTrace();

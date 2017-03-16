@@ -8,8 +8,8 @@ public class SpeedConcat {
 			val = in;
 		}
 	}
-	Node head = null;
-	Node tail = null;
+	private Node head = null;
+	private Node tail = null;
 	/**
 	 * Makes a new SpeedConcat object. This is a poorly-written reimplementation of the Javascript version of Speedconcat: https://www.npmjs.com/package/speedconcat
 	 */
@@ -43,6 +43,14 @@ public class SpeedConcat {
 	 */
 	public final SpeedConcat append(final int i) {
 		return append(Integer.toString(i));
+	}
+	/**
+	 * Takes an double, makes a string from that double, appends the resulting string to the list of things to be concatenated, and returns this.
+	 * @param double d The double being made into a string and concatenated.
+	 * @return SpeedConcat this
+	 */
+	public final SpeedConcat append(final double d) {
+		return append(Double.toString(d));
 	}
 	/**
 	 * Generates the resulting String in an A log2(B) banner.

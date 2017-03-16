@@ -33,7 +33,10 @@ public class SentenceCorrector {
 				;
 	}
 	
-	
+	/**
+	 * Returns the internal querykit for page generation.
+	 * @return QueryKit qk the querykit.
+	 */
 	public QueryKit getQueryKit() {
 		return qk;
 	}

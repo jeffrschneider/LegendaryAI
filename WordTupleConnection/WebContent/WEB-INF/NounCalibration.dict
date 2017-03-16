@@ -1,0 +1,13 @@
+<START:person>Alice<END> lives in <START:location>Palm Bay<END>,<START:location>Florida<END>.
+There is a <START:concept>religion<END> that worships <START:person>Cher<END>.
+<START:person>Katya<END> deserved to win the second <START:concept>season<END> of <START:media>Rupaul's Drag Race All Stars<END>.
+This <START:concept>exception<END> indicates that the provided <START:data>training data<END> is insufficient to train the desired <START:data>model<END>.
+<START:site>Wikipedia<END> provided <START:data>training data<END> for calibration.
+By running the <START:concept>code<END> with the example <START:concept>text<END>, we get the following <START:concept>result<END>.
+Are you done yet?
+We're plugging <START:noun>things<END> in!
+Why have <START:food>avacado<END> colored <START:tool>appliances<END> not made a <START:concept>comeback<END>?
+If I keep adding <START:data>lines<END>, the <START:tool>API<END> might eventually work.
+<START:location>Northern Ireland<END> is a <START:concept>hub<END> of depressing <START:concept>media<END>, including <START:media>Game Of Thrones<END>
+Nobody has published anything akin to a non-specialized <START:media>dictionary<END>, so I've been dealing with that.
+<START:site>Youtube<END> should encourage <START:concept>piracy<END> as <START:concept>revenge<END> for invalid <START:concept>requests<END>.

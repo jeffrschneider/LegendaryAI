@@ -11,9 +11,33 @@
 		<servlet-name>scs</servlet-name>
 		<servlet-class>ai.legendary.services.SentenceCorrectionService</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>sds</servlet-name>
+		<servlet-class>ai.legendary.services.SentenceDetectionService</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>POS</servlet-name>
+		<servlet-class>ai.legendary.services.PartOfSpeech</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LemmatizerService</servlet-name>
+		<servlet-class>ai.legendary.services.LemmatizerService</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LemmatizerService</servlet-name>
+		<url-pattern>/WordTupleConnection/LemmaService/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>POS</servlet-name>
+		<url-pattern>/WordTupleConnection/POS/*</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>scs</servlet-name>
 		<url-pattern>/WordTupleConnection/wordCorrect/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>sds</servlet-name>
+		<url-pattern>/WordTupleConnection/sentenceDetect/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>native</servlet-name>

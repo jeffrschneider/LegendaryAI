@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Legendary AI WebConsole</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<textarea id="input"></textarea>
+<button id="wordCorrect">fix</button>
+<div id="WCoutput"></div>
+<script>
+"use strict";
+const encode = function(str) {return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {return '%' + c.charCodeAt(0).toString(16);});};
+$(document).ready(function(){
+  console.log("document ready");
+  $("#wordCorrect").click(function(){
+    console.log("clicked");
+    $.get("WordTupleConnection/wordCorrect/?flawedString=" + encode(document.getElementById("input").value), function(data, status, xhr){
+      console.log("status: " + status );
+      console.log(data);
+      data = JSON.parse(data);
+      switch(data.statusCode) {
+        case 0:
+          alert("processing delay");
+          return;
+        case 1:
+          var k = "<p>" + data.output + "<p><table><thead><tr><th>index</th><th>Word 1</th><th>Word 2</th></tr></thead><tbody>";
+          for (var index = 0; index < data.points.length; index++) {
+            k = k + (("<tr><td>" + (data.points[index] + "</td><td>")) + ((data.words[(data.points[index])-1] + "</td><td>") + (data.words[data.points[index]] + "</td></tr>")));
+          }
+          document.getElementById("WCoutput").innerHTML = k + "</tbody></table>";
+          return;
+        case -1:
+        default:
+          document.getElementById("WCoutput").innerHTML = JSON.stringify(data);
+          return;
+      }
+    });
+  });
+});
+</script>
+<ul>
+  <li>
+    Generic basic files: http://www.langbench.com/WordTupleConnection/index.html
+  </li>
+  <li>
+    Sentence Detection: http://www.langbench.com/WordTupleConnection/sentenceDetect/?action=getSentenceIndexes&input=This%20is%20a%20sentence.%20This%20is%20another%20sentence.
+  </li>
+  <li>
+    Sentence Correction: http://www.langbench.com/WordTupleConnection/wordCorrect/?flawedString=I%20am%20dislike%20tomcat.
+  </li>
+  <li>
+    General Tokenization: http://www.langbench.com/WordTupleConnection/POS/?action=tokenize&sentence=I%20wrote%20a%20sample%20sentence
+  </li>
+  <li>
+    Detecting parts of speech: http://www.langbench.com/WordTupleConnection/POS/?action=POSjob&sentence=I%20wrote%20a%20sample%20sentence
+  </li>
+  <li>
+    Lemma Job: http://www.langbench.com/WordTupleConnection/LemmaService/?action=LemmaJob&tokens=Rockwell,International,Corp.,%27s,Tulsa,unit,said,it,signed,a,tentative,agreement,extending,its,contract,with,Boeing,Co.,to,provide,structural,parts,for,Boeing,%27s,747,jetliners,.
+  </li>
+</ul>
+</body>
+</html>
