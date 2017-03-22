@@ -48,8 +48,9 @@ public class ChunkerService extends HttpServlet {
 		try {
 			final String text = stringUtils.urlDecode(raw);
 			final PrintWriter output = response.getWriter();
+			final String apacheResult = ChunkerResult.jsonExport(apache.chunk(text));
 			output.write("{\"statusCode\": 1, \"results\": [");
-			output.write(ChunkerResult.jsonExport(apache.chunk(text)));
+			output.write(apacheResult);
 			output.write("]}");
 			output.close();
 		} catch (final Exception e) {

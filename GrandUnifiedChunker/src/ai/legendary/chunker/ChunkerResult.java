@@ -1,5 +1,8 @@
 package ai.legendary.chunker;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class ChunkerResult {
 	public String vendor = null;
 	public String[] tokens = null;
@@ -31,7 +34,7 @@ public class ChunkerResult {
 		for (int index = 1; index < input.parts.length; index++) {
 			result.append(",\"").append(input.parts[index]).append("\"");
 		}
-		result.append("], \"parts\": [");
+		result.append("], \"sections\": [");
 		int intIndex = 0;
 		if (input.sections.length > 0) {
 			exportSection(input.sections[0], input.indexes[intIndex], input.indexes[intIndex+1], result);
@@ -45,5 +48,16 @@ public class ChunkerResult {
 			intIndex++;
 		}
 		return result.append("]}").concat();
+	}
+	public static final int[] IntegerListToIntArray(final List<Integer> input) throws Exception {
+		if (input==null) {
+			throw new Exception();
+		}
+		final int[] result = new int[input.size()];
+		final Iterator<Integer> i = input.iterator();
+		for (int index = 0; index < result.length; index++) {
+			result[index] = i.next().intValue();
+		}
+		return result;
 	}
 }
