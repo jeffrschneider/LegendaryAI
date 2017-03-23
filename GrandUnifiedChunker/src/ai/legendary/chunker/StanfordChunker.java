@@ -69,8 +69,7 @@ public class StanfordChunker {
 			parseBranches(tokens, indexes, sections, tree.children()[0], initialIndex);
 			return;
 		}
-		final Tree[] kids = tree.children();
-		if (!(containsPuncBreaker(kids))) {
+		if (shouldBeCondensed(tree)) {
 			if (indexes.size()==0) {
 				condenseBranch(tokens, indexes, sections, tree, 0);
 			} else {
@@ -78,6 +77,7 @@ public class StanfordChunker {
 			}
 			return;
 		}
+		final Tree[] kids = tree.children();
 		for (int index = 0; index < kids.length; index++) {
 			if (indexes.size()==0) {
 				parseBranches(tokens, indexes, sections, kids[index], 0);
@@ -86,6 +86,64 @@ public class StanfordChunker {
 			}
 		}
 		return;
+	}
+	public static final void nullKill(final Object o) throws Exception{
+		if (o==null) {
+			throw new Exception();
+		}
+		return;
+	}
+	public static final boolean shouldBeCondensed(final Tree tree) throws Exception {
+		nullKill(tree);
+		if (containsPuncBreaker(tree)) {
+			return false;
+		}
+		if (tree.value().startsWith("N")) {
+			if (!(containsBranchType(tree.children(), "V.*"))) {
+				return true;
+			}
+		}
+		if (tree.value().startsWith("V")) {
+			if (!(containsBranchType(tree.children(), "N.*"))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static final boolean containsBranchType(final Tree[] trees, final String type) throws Exception {
+		nullKill(trees);
+		nullKill(type);
+		for (final Tree kid: trees) {
+			if (containsBranchType(kid, type)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static final boolean typeMatch(final Tree tree, final String type) throws Exception {
+		nullKill(type);
+		if (tree.isEmpty()) {
+			return false;
+		}
+		if (tree.isLeaf()) {
+			return false;
+		}
+		if (tree.value().equals(type)) {
+			return true;
+		}
+		if (tree.value().matches(type)) {
+			return true;
+		}
+		return false;
+	}
+	public static final boolean containsBranchType(final Tree tree, final String type) throws Exception {
+		nullKill(type);
+		nullKill(tree);
+		if (typeMatch(tree, type)) {
+			return true;
+		}
+		final Tree[] kids = tree.children();
+		return containsBranchType(kids, type);
 	}
 	public final static void condenseBranch(final List<String> tokens, final List<Integer> indexes, final List<String> sections, final Tree tree, int initialIndex) throws Exception {
 		condensedVoidCheck(tokens, indexes, sections, tree);
@@ -124,41 +182,37 @@ public class StanfordChunker {
 		indexes.add(new Integer(initialIndex));
 	}
 	public final static void condensedVoidCheck(final List<String> tokens, final List<Integer> indexes, final List<String> sections, final Tree tree) throws Exception {
-		if (tokens==null) {
-			throw new Exception();
-		}
-		if (indexes==null) {
-			throw new Exception();
-		}
-		if (sections==null) {
-			throw new Exception();
-		}
-		if (tree==null) {
-			throw new Exception();
-		}
+		nullKill(tokens);
+		nullKill(indexes);
+		nullKill(sections);
+		nullKill(tree);
 		return;
 	}
 	public static final boolean containsPuncBreaker(final Tree[] branches) throws Exception {
 		for (final Tree branch: branches) {
-			final String label = branch.value();
-			if (label==null) {
-				throw new Exception();
+			if (containsPuncBreaker(branch)) {
+				return true;
 			}
-			innerSwitch:
-			switch (label) {
-				case ":":
-				case ".":
-				case ",":
-					return true;
-				default:
-					if (!(branch.isLeaf())) {
-						final boolean internal = containsPuncBreaker(branch.children());
-						if (internal==true) {
-							return true;
-						}
+		}
+		return false;
+	}
+	public static final boolean containsPuncBreaker(final Tree branch) throws Exception {
+		nullKill(branch);
+		final String label = branch.value();
+		innerSwitch:
+		switch (label) {
+			case ":":
+			case ".":
+			case ",":
+				return true;
+			default:
+				if (!(branch.isLeaf())) {
+					final boolean internal = containsPuncBreaker(branch.children());
+					if (internal==true) {
+						return true;
 					}
-					break innerSwitch;
-			}
+				}
+				break innerSwitch;
 		}
 		return false;
 	}
