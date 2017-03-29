@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Stack;
 
+import ai.legendary.core.SpeedConcat;
 import edu.stanford.nlp.ling.CoreAnnotations.PartOfSpeechAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;

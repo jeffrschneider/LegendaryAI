@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ai.legendary.services.StandardizedResponses;
+import ai.legendary.core.MissingParam;
 
 public abstract class GenericService extends HttpServlet {
 	private static long serialVersionUID;
@@ -20,7 +20,7 @@ public abstract class GenericService extends HttpServlet {
 		for (int index = 0; index < params.length; index++) {
 			final String param = request.getParameter(params[index]);
 			if (param==null) {
-				StandardizedResponses.missingParameterJob(params[index], response);
+				MissingParam.missingParamJob(params[index], response);
 				return;
 			}
 		}
@@ -28,7 +28,7 @@ public abstract class GenericService extends HttpServlet {
 			filteredGet(request, response, response.getWriter());
 			return;
 		} catch (final Exception e) {
-			StandardizedResponses.serverFailure(response);
+			MissingParam.serverError(response);
 			return;
 		}
 	}

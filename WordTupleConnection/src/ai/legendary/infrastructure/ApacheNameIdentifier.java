@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 
+import ai.legendary.core.SpeedConcat;
+import ai.legendary.core.stringUtils;
 import opennlp.tools.namefind.NameFinderME;
 import opennlp.tools.namefind.NameSample;
 import opennlp.tools.namefind.NameSampleDataStream;

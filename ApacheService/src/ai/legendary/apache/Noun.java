@@ -1,5 +1,7 @@
 package ai.legendary.apache;
 
+import ai.legendary.core.stringUtils;
+
 public class Noun implements Comparable{
 	private String name = null;
 	private String category = "noun";
@@ -51,7 +53,7 @@ public class Noun implements Comparable{
 		return this;
 	}
 	public final String JSONexport() {
-		return (("{\"name\": \"" + name) + (("\", \"category\": \"" + category) + "\""));
+		return (("{\"name\": \"" + name) + (("\", \"category\": \"" + category) + "\"}"));
 	}
 	public final String toString(){
 		return this.JSONexport();

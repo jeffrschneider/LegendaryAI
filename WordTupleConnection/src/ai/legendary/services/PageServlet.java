@@ -8,8 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import ai.legendary.core.SpeedConcat;
 import ai.legendary.infrastructure.HardCodedDirectory;
-import ai.legendary.infrastructure.SpeedConcat;
 @WebServlet(
 		urlPatterns = "/*"
 		)

@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ai.legendary.core.MissingParam;
+import ai.legendary.core.stringUtils;
 import ai.legendary.infrastructure.ApachePartOfSpeechDetector;
 import ai.legendary.infrastructure.GeneralLemmatizer;
 import ai.legendary.infrastructure.HardCodedDirectory;
 import ai.legendary.infrastructure.LemmaResult;
-import ai.legendary.infrastructure.stringUtils;
 
 @WebServlet(
 		urlPatterns = "/LemmaService/*"
@@ -38,12 +39,12 @@ public class LemmatizerService extends HttpServlet {
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException{
 		final String action = request.getParameter("action");
 		if (action==null) {
-			StandardizedResponses.missingParameterJob("action", response);
+			MissingParam.missingParamJob("action", response);
 			return;
 		}
 		final String rawTokens = request.getParameter("tokens");
 		if (rawTokens==null) {
-			StandardizedResponses.missingParameterJob("tokens", response);
+			MissingParam.missingParamJob("tokens", response);
 			return;
 		}
 		try {
@@ -56,7 +57,7 @@ public class LemmatizerService extends HttpServlet {
 			response.getWriter().write(output);
 			response.getWriter().close();
 		} catch (final Exception e) {
-			StandardizedResponses.serverFailure(response);
+			MissingParam.serverError(response);
 		}
 	}
 

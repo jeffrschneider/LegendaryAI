@@ -3,6 +3,7 @@ package ai.legendary.infrastructure;
 import java.util.LinkedList;
 import java.util.List;
 
+import ai.legendary.core.SpeedConcat;
 import opennlp.tools.postag.POSTaggerME;
 
 public class PartOfSpeechObject {

@@ -3,6 +3,8 @@ import java.sql.*;
 import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import ai.legendary.core.WordTupleConnection;
 public class QueryKit {
 	private WordTupleConnection database = null;
 	/**

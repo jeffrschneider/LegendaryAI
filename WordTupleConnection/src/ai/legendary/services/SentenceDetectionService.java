@@ -8,10 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ai.legendary.infrastructure.stringUtils;
+
+import ai.legendary.core.stringUtils;
 import ai.legendary.infrastructure.DynamicSentenceDetector;
 import opennlp.tools.util.Span;
-import ai.legendary.infrastructure.SpeedConcat;
+import ai.legendary.core.SpeedConcat;
 import ai.legendary.infrastructure.HardCodedDirectory;
 @WebServlet(
 		urlPatterns = "/sentenceDetect/*"

@@ -2,6 +2,9 @@ package ai.legendary.infrastructure;
 
 import java.util.Arrays;
 
+import ai.legendary.core.WordTupleConnection;
+import ai.legendary.core.stringUtils;
+
 public class CorrectionInstance {
 	/**
 	 * This function exists so there can be an easily used command line interface for setting up SentenceCorrector Objects. This makes it much easier to handle a multiprocess setup.

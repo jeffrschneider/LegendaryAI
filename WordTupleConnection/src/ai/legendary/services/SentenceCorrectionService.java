@@ -1,4 +1,6 @@
 package ai.legendary.services;
+import ai.legendary.core.WordTupleConnection;
+import ai.legendary.core.stringUtils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,9 +15,7 @@ import ai.legendary.infrastructure.ConnectionBuilder;
 import ai.legendary.infrastructure.QueryString;
 import ai.legendary.infrastructure.QueryKit;
 import ai.legendary.infrastructure.SentenceCorrector;
-import ai.legendary.infrastructure.SpeedConcat;
-import ai.legendary.infrastructure.WordTupleConnection;
-import ai.legendary.infrastructure.stringUtils;
+import ai.legendary.core.SpeedConcat;
 @WebServlet(
 		urlPatterns = "/wordCorrect/*"
 		)

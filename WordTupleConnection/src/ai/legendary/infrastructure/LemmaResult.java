@@ -1,5 +1,8 @@
 package ai.legendary.infrastructure;
 
+import ai.legendary.core.SpeedConcat;
+import ai.legendary.core.stringUtils;
+
 public class LemmaResult {
 	public String[] Apache = null;
 	public LemmaResult() {

@@ -1,5 +1,7 @@
 package ai.legendary.infrastructure;
 
+import ai.legendary.core.WordTupleConnection;
+
 public class ConnectionBuilder {
 	/**
 	 * Makes connections so there's only one point where Authentication information needs to be changed.

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ai.legendary.core.MissingParam;
+import ai.legendary.core.stringUtils;
+
 @WebServlet(
 		urlPatterns = "/1.7.2/POS/*"
 		)

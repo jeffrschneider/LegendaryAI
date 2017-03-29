@@ -1,5 +1,10 @@
 package ai.legendary.infrastructure;
 import java.util.LinkedList;
+
+import ai.legendary.core.SpeedConcat;
+import ai.legendary.core.WordTupleConnection;
+import ai.legendary.core.stringUtils;
+
 import java.math.BigDecimal;
 public class SentenceCorrector {
 	private WordTupleConnection connection = null;

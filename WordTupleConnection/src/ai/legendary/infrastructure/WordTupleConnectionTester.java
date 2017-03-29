@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.sql.*;
 import java.math.BigDecimal;
+import ai.legendary.core.WordTupleConnection;
+import ai.legendary.core.stringUtils;
 public class WordTupleConnectionTester {
 	/**
 	 * This is just a test function to test WordTupleConnection.java and QueryKit.java. It doubles as example code for those who are stuck trying to understand my code. 

@@ -3,6 +3,8 @@ package ai.legendary.chunker;
 import java.util.Iterator;
 import java.util.List;
 
+import ai.legendary.core.SpeedConcat;
+
 public class ChunkerResult {
 	public String vendor = null;
 	public String[] tokens = null;

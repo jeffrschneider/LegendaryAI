@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ai.legendary.core.stringUtils;
 import ai.legendary.infrastructure.ApachePartOfSpeechDetector;
 import ai.legendary.infrastructure.HardCodedDirectory;
-import ai.legendary.infrastructure.SpeedConcat;
-import ai.legendary.infrastructure.stringUtils;
+import ai.legendary.core.SpeedConcat;
 @WebServlet(
 		urlPatterns = "/POS/*"
 		)

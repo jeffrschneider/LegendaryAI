@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ai.legendary.core.stringUtils;
+
 public abstract class InvalidVersionOrService extends GenericService {
 
 	/**

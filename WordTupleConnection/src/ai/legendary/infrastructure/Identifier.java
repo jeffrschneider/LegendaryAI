@@ -2,6 +2,7 @@ package ai.legendary.infrastructure;
 
 import java.util.Arrays;
 
+import ai.legendary.core.stringUtils;
 import opennlp.tools.util.Span;
 
 @SuppressWarnings("rawtypes")

@@ -2,6 +2,10 @@ package ai.legendary.infrastructure;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import ai.legendary.core.SpeedConcat;
+import ai.legendary.core.WordTupleConnection;
+import ai.legendary.core.stringUtils;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;

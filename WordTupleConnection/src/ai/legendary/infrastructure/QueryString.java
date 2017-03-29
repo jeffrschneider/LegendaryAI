@@ -1,5 +1,7 @@
 package ai.legendary.infrastructure;
 
+import ai.legendary.core.stringUtils;
+
 public class QueryString {
 	private String[] keys = null;
 	private String[] values = null;
