@@ -35,4 +35,42 @@ public class MissingParam {
 		writer.write("{\"statusCode\": 0,\"message\": \"processing\"}");
 		writer.close();
 	}
+	public static final void lemmaResult(final HttpServletResponse response, final String[] tokens, final String[] parts, final String[] lemmas) throws IOException {
+		final PrintWriter writer = response.getWriter();
+		writer.write("{\"statusCode\": 1,\"tokens\": [");
+		if (tokens.length > 0) {
+			writer.write("\"");
+			writer.write(tokens[0]);
+			writer.write("\"");
+		}
+		for (int index = 1; index < tokens.length; index++) {
+			writer.write(", \"");
+			writer.write(tokens[index]);
+			writer.write("\"");
+		}
+		writer.write("], \"POS\": [");
+		if (parts.length > 0) {
+			writer.write("\"");
+			writer.write(parts[0]);
+			writer.write("\"");
+		}
+		for (int index = 1; index < parts.length; index++) {
+			writer.write(", \"");
+			writer.write(parts[index]);
+			writer.write("\"");
+		}
+		writer.write("], \"lemma\": [");
+		if (lemmas.length > 0) {
+			writer.write("\"");
+			writer.write(lemmas[0]);
+			writer.write("\"");
+		}
+		for (int index = 1; index < lemmas.length; index++) {
+			writer.write(", \"");
+			writer.write(lemmas[index]);
+			writer.write("\"");
+		}
+		writer.write("]}");
+		writer.close();
+	}
 }

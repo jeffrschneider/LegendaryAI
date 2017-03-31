@@ -131,8 +131,8 @@ public class GenderServer extends HttpServlet {
 			writer.close();
 		} catch (final Exception e) {
 			
-			e.printStackTrace(response.getWriter());
-			//MissingParam.serverError(response);
+			//e.printStackTrace(response.getWriter());
+			MissingParam.serverError(response);
 			return;
 		}
 	}
