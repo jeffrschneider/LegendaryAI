@@ -51,6 +51,7 @@ public class PartOfSpeech extends HttpServlet {
 	 * @exception IOException E An exception that may arise from the response's PrintWriter object. 
 	 */
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		final String sentence = request.getParameter("sentence");
 		if (sentence==null) {
 			missingParameterJob("sentence", response);

@@ -34,6 +34,7 @@ public class GenderServer extends HttpServlet {
 	}
 	public void destroy(){}
 	public void doGet (final HttpServletRequest request, final HttpServletResponse response) throws IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		if (fail != null ) {
 			MissingParam.serverError(response);
 			return;

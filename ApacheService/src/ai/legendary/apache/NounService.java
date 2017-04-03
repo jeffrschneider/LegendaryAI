@@ -45,6 +45,7 @@ public class NounService extends HttpServlet  {
 			return;
 		}
 		final PrintWriter pw = response.getWriter();
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		try {
 			switch (action) {
 				case "reset":

@@ -60,6 +60,7 @@ public class PageServlet extends HttpServlet {
 	 * HttpServletResponse response The response.
 	 */
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response){
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		for (int index = 0; index < pagenames.length; index++) {
 			final String[] parts = request.getRequestURI().split("/");
 			if ((parts[parts.length-1]).equals("")) {

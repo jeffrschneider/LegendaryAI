@@ -39,6 +39,7 @@ public class ChunkerService extends HttpServlet {
 		
 	}
 	public void doGet (final HttpServletRequest request, final HttpServletResponse response) throws IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		if (serverFault) {
 			//workingError.printStackTrace(response.getWriter());
 			//response.getWriter().close();

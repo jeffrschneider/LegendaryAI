@@ -53,6 +53,7 @@ public class SentenceCorrectionService extends HttpServlet {
 	 */
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response){
 		try {
+			response.setHeader("Access-Control-Allow-Origin", "*");
 			final PrintWriter writer = response.getWriter();
 			final WordTupleConnection wtc = ConnectionBuilder.build();
 			final QueryString qs = new QueryString(request.getQueryString());

@@ -37,6 +37,7 @@ public class LemmatizerService extends HttpServlet {
 	}
 	public void destroy(){}
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException{
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		final String action = request.getParameter("action");
 		if (action==null) {
 			MissingParam.missingParamJob("action", response);
