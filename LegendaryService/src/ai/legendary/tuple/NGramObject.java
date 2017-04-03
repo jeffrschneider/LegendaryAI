@@ -51,6 +51,12 @@ public class NGramObject {
 		nullCheck(tokens);
 		nullCheck(percentage);
 		final SpeedConcat result = (new SpeedConcat()).append("{ \"tokens\":[");
+		if (tokens.length > 0) {
+			result.append("\"").append(tokens[0]).append("\"");
+		}
+		for (int index = 0; index < tokens.length ; index++) {
+			result.append(", \"").append(tokens[index].replaceAll("\"", "\\\"").replaceAll("\'", "\\\'")).append("\"");
+		}
 		result.append("], \"percentage\": \"");
 		result.append(percentage);
 		result.append("\"}");

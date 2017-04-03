@@ -93,7 +93,7 @@ public class TupleService extends HttpServlet{
 		final LinkedList<NGramObject> result = new LinkedList<NGramObject>();
 		for (int index = N-1; index < tokens.length; index++) {
 			final NGramObject ngo = new NGramObject();
-			final String[] subTokens = Arrays.copyOfRange(tokens, index-N, index);
+			final String[] subTokens = Arrays.copyOfRange(tokens, index-N+1, index+1);
 			ngo.setTokens(subTokens);
 			innerSwitch:
 			switch(N) {
