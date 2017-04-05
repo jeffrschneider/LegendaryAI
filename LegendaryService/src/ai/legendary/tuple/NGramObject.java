@@ -54,7 +54,7 @@ public class NGramObject {
 		if (tokens.length > 0) {
 			result.append("\"").append(tokens[0]).append("\"");
 		}
-		for (int index = 0; index < tokens.length ; index++) {
+		for (int index = 1; index < tokens.length ; index++) {
 			result.append(", \"").append(tokens[index].replaceAll("\"", "\\\"").replaceAll("\'", "\\\'")).append("\"");
 		}
 		result.append("], \"percentage\": \"");

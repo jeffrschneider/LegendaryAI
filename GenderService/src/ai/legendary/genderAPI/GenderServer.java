@@ -37,9 +37,9 @@ public class GenderServer extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		if (fail != null ) {
 			MissingParam.serverError(response);
-			return;
 			//fail.printStackTrace(response.getWriter());
 			//response.getWriter().close();
+			return;
 		}
 		final String raw = request.getParameter("text");
 		if (raw==null) {
@@ -82,9 +82,9 @@ public class GenderServer extends HttpServlet {
 			return;
 		} catch (final Exception e) {
 			MissingParam.serverError(response);
-			return;
 			//e.printStackTrace(response.getWriter());
 			//response.getWriter().close();
+			return;
 		}
 	}
 	private void linearJob(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
