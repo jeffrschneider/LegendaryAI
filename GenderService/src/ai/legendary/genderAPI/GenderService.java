@@ -28,7 +28,7 @@ public class GenderService {
 	public GenderService(final WordTupleConnection input) {
 		wtc = input;
 		final Properties props = new Properties();
-		props.put("annotators", "tokenize,ssplit,pos,lemma,ner");
+		props.put("annotators", "tokenize,ssplit");//,pos,lemma,ner
 		pipeline = new StanfordCoreNLP(props);
 	}
 	private StanfordCoreNLP pipeline = null;

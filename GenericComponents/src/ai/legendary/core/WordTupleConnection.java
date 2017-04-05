@@ -106,7 +106,7 @@ public class WordTupleConnection {
 	 * @exception Exception An exception may be thrown if the query is improperly formatted to the point that the server can not understand it.
 	 */
 	public final ResultSet query (final String QueryString) throws SQLException {
-		return conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery(QueryString);
+		return conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE).executeQuery(QueryString);
 	}
 	/**
 	 * This function is only supposed to be called by the garbage collector when this WordTupleConnection is being flagged as free memory. When run, if this WordTupleConnection is not closed, it will attempt to close itself.
