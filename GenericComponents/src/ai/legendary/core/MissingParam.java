@@ -2,6 +2,7 @@ package ai.legendary.core;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedList;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +39,20 @@ public class MissingParam {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		final PrintWriter writer = response.getWriter();
 		writer.write("{\"statusCode\": 0,\"message\": \"processing\"}");
+		writer.close();
+	}
+	public static final void SROsetResult(final HttpServletResponse response, final LinkedList<SROset> sets) throws IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		final PrintWriter writer = response.getWriter();
+		writer.write("{\"statusCode\": 1,\"sets\": [");
+		if (sets.size() > 0) {
+			writer.write(SROset.toJSON(sets.removeFirst()));
+		}
+		while (sets.size() > 0) {
+			writer.write(", ");
+			writer.write(SROset.toJSON(sets.removeFirst()));
+		}
+		writer.write("]}");
 		writer.close();
 	}
 	public static final void lemmaResult(final HttpServletResponse response, final String[] tokens, final String[] parts, final String[] lemmas) throws IOException {
