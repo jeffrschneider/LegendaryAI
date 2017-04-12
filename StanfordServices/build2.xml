@@ -66,14 +66,15 @@
             <classpath refid="StanfordServices.classpath"/>
         </java>
     </target>
-    <target name="ServerCode">
-        <java classname="ai.legendary.stanford.RelationshipServer" failonerror="true" fork="yes">
-            <arg line="acceptabilities"/>
-            <classpath refid="StanfordServices.classpath"/>
-        </java>
-        <java classname="ai.legendary.stanford.StemServer" failonerror="true" fork="yes">
-            <arg line="acceptabilities"/>
-            <classpath refid="StanfordServices.classpath"/>
-        </java>
-    </target>              	
+
+                <target name="ServerCode">
+                    <java classname="ai.legendary.stanford.RelationshipServer" failonerror="true" fork="yes">
+                        <arg line="acceptabilities"/>
+                        <classpath refid="StanfordServices.classpath"/>
+                    </java>
+                    <java classname="ai.legendary.stanford.StemServer" failonerror="true" fork="yes">
+                        <arg line="acceptabilities"/>
+                        <classpath refid="StanfordServices.classpath"/>
+                    </java>
+                </target>   
 </project>

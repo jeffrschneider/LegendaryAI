@@ -15,6 +15,9 @@ import ai.legendary.core.stringUtils;
 		urlPatterns = "/3.7.0/Relationship/*"
 		)
 public class RelationshipServer extends HttpServlet {
+	public static final void main (final String[] args) {
+		System.out.println("This is just a filler method so that Eclipse will do its job when it generates the buildfile.");
+	}
 
 	/**
 	 * 
