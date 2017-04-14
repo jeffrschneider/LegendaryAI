@@ -1,17 +1,16 @@
 package ai.legendary.apache;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
-import opennlp.tools.tokenize.Tokenizer;
 
 public class ApachePOS {
 	private POSTaggerME tagger = null;
-	private ApacheTokenizer at = null;
-	public ApachePOS(final String input, final ApacheTokenizer tkr) throws Exception {
+	private ApacheTokenize at = null;
+	
+	public ApachePOS(final String input, final ApacheTokenize tkr) throws Exception {
 		if (input==null) {
 			throw new Exception();
 		}

@@ -20,6 +20,7 @@ public class ApacheLemmaService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Exception e = null;
 	private ApacheLemma lemma = null;
+	@Override
 	public void init() {
 		try {
 			final String dir = DataDir.result();
@@ -31,7 +32,9 @@ public class ApacheLemmaService extends HttpServlet {
 			e = f;
 		}
 	}
+	@Override
 	public void destroy(){}
+	@Override
 	public void doGet (final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 		final String text = request.getParameter("text");
 		if (text==null) {

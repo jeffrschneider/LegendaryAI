@@ -17,8 +17,10 @@ public class DefaultActivity extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Override
 	public void init() throws ServletException {}
 	public void destory() {}
+	@Override
 	public void doGet (final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 		final PrintWriter writer = response.getWriter();
 		writer.write("{\"statusCode\": -1,\"problem\": \"invalidService\",\"services\": [{\"name\": \"Apache\",\"versions\": [\"1.7.2\"],\"services\": [\"SentenceDetect\", \"Tokenizer\", \"NounDetect\"]}]}");

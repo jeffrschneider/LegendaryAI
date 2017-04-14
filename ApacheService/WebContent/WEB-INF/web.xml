@@ -6,7 +6,15 @@
 	<servlet>
 		<servlet-name>DefaultActivity</servlet-name>
 		<servlet-class>ai.legendary.apache.DefaultActivity</servlet-class>
+	</servlet><!--
+	<servlet>
+		<servlet-name>Tokenize</servlet-name>
+		<servlet-class>ai.legendary.apache.TokenService</servlet-class>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>Tokenize</servlet-name>
+		<url-pattern>/1.7.2/Tokenize/*</url-pattern>
+	</servlet-mapping>-->
 	<servlet-mapping>
 		<servlet-name>DefaultActivity</servlet-name>
 		<url-pattern>/1.7.2/*</url-pattern>

@@ -1,7 +1,6 @@
 package ai.legendary.apache;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,20 +12,16 @@ import opennlp.tools.util.Span;
 
 public class ApacheNameIdentifier {
 	private final ArrayList<NameFinderME> finders = new ArrayList<NameFinderME>();
-	private ApacheTokenizer at = null;
-	public ApacheNameIdentifier(final String tokSrc) throws Exception{
-		at = new ApacheTokenizer(tokSrc);
-		
+	private ApacheTokenize at = null;
+	public ApacheNameIdentifier() throws Exception{
+		at = new ApacheTokenize();
 	}
-	public ApacheNameIdentifier(final String src, final String tokSrc) throws Exception {
-		at = new ApacheTokenizer(tokSrc);
+	public ApacheNameIdentifier(final String src) throws Exception {
+		at = new ApacheTokenize();
 		addFinder(src);
 	}
-	public ApacheNameIdentifier(final String[] src, final String tokSrc) throws Exception {
-		if (tokSrc==null) {
-			throw new Exception();
-		}
-		at = new ApacheTokenizer(tokSrc);
+	public ApacheNameIdentifier(final String[] src) throws Exception {
+		at = new ApacheTokenize();
 		addFinder(src);
 	}
 	public ApacheNameIdentifier addFinder(final String input) throws Exception {

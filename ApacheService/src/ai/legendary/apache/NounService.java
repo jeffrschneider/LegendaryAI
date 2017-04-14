@@ -1,7 +1,6 @@
 package ai.legendary.apache;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ai.legendary.core.LineAdd;
 import ai.legendary.core.MissingParam;
 import ai.legendary.core.stringUtils;
 
@@ -23,6 +23,7 @@ public class NounService extends HttpServlet  {
 	private static final long serialVersionUID = 1L;
 	private static final String configFile = DataDir.result() + "fileNames.txt";
 	private ApacheNameIdentifier ani = null;
+	@Override
 	public void init(){
 		try {
 			loadDetectors(configFile);
@@ -35,9 +36,10 @@ public class NounService extends HttpServlet  {
 		for (int index = 0; index < fileNames.length; index++) {
 			fileNames[index] = DataDir.result() + fileNames[index];
 		}
-		ani = new ApacheNameIdentifier(fileNames, DataDir.result() + "tokenizerData.txt");
+		ani = new ApacheNameIdentifier(fileNames);
 	}
 	public void destory() {}
+	@Override
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 		final String action = request.getParameter("action");
 		if (action==null) {
@@ -81,7 +83,8 @@ public class NounService extends HttpServlet  {
 			MissingParam.serverError(response);
 			return;
 		}
-	}
+	}/*
+	@Override
 	public void doPost(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 		final String action = request.getParameter("action");
 		if (action==null) {
@@ -108,5 +111,5 @@ public class NounService extends HttpServlet  {
 			return;
 		}
 		
-	}
+	}*/
 }

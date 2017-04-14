@@ -59,38 +59,21 @@ public class MissingParam {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		final PrintWriter writer = response.getWriter();
 		writer.write("{\"statusCode\": 1,\"tokens\": [");
-		if (tokens.length > 0) {
-			writer.write("\"");
-			writer.write(tokens[0]);
-			writer.write("\"");
-		}
-		for (int index = 1; index < tokens.length; index++) {
-			writer.write(", \"");
-			writer.write(tokens[index]);
-			writer.write("\"");
-		}
+		stringUtils.printMembers(tokens, writer);
 		writer.write("], \"POS\": [");
-		if (parts.length > 0) {
-			writer.write("\"");
-			writer.write(parts[0]);
-			writer.write("\"");
-		}
-		for (int index = 1; index < parts.length; index++) {
-			writer.write(", \"");
-			writer.write(parts[index]);
-			writer.write("\"");
-		}
+		stringUtils.printMembers(parts, writer);
 		writer.write("], \"lemma\": [");
-		if (lemmas.length > 0) {
-			writer.write("\"");
-			writer.write(lemmas[0]);
-			writer.write("\"");
-		}
-		for (int index = 1; index < lemmas.length; index++) {
-			writer.write(", \"");
-			writer.write(lemmas[index]);
-			writer.write("\"");
-		}
+		stringUtils.printMembers(lemmas, writer);
+		writer.write("]}");
+		writer.close();
+	}
+	public static final void posResult(final HttpServletResponse response, final String[] tokens, final String[] parts) throws IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		final PrintWriter writer = response.getWriter();
+		writer.write("{\"statusCode\": 1,\"tokens\": [");
+		stringUtils.printMembers(tokens, writer);
+		writer.write("], \"POS\": [");
+		stringUtils.printMembers(parts, writer);
 		writer.write("]}");
 		writer.close();
 	}
@@ -98,28 +81,27 @@ public class MissingParam {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		final PrintWriter writer = response.getWriter();
 		writer.write("{\"statusCode\": 1,\"tokens\": [");
-		if (tokens.length > 0) {
-			writer.write("\"");
-			writer.write(tokens[0]);
-			writer.write("\"");
-		}
-		for (int index = 1; index < tokens.length; index++) {
-			writer.write(", \"");
-			writer.write(tokens[index]);
-			writer.write("\"");
-		}
+		stringUtils.printMembers(tokens, writer);
 		writer.write("], \"stems\": [");
-		if (stems.length > 0) {
-			writer.write("\"");
-			writer.write(stems[0]);
-			writer.write("\"");
-		}
-		for (int index = 1; index < stems.length; index++) {
-			writer.write(", \"");
-			writer.write(stems[index]);
-			writer.write("\"");
-		}
+		stringUtils.printMembers(stems, writer);
 		writer.write("]}");
 		writer.close();
 	}
+	public static final void tokenResult(final HttpServletResponse response, final String[] tokens) throws IOException{
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		final PrintWriter writer = response.getWriter();
+		writer.write("{\"statusCode\": 1,\"tokens\": [");
+		stringUtils.printMembers(tokens, writer);
+		writer.write("]}");
+		writer.close();		
+	}
+	public static final void sentenceResult(final HttpServletResponse response, final String[] results) throws IOException{
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		final PrintWriter writer = response.getWriter();
+		writer.write("{\"statusCode\": 1,\"results\": [");
+		stringUtils.printMembers(results, writer);
+		writer.write("]}");
+		writer.close();		
+	}
+	
 }

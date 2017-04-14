@@ -1,4 +1,4 @@
-package ai.legendary.apache;
+package ai.legendary.apache.deprecated;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ai.legendary.apache.DataDir;
 import ai.legendary.core.MissingParam;
 import ai.legendary.core.stringUtils;
 
@@ -21,6 +22,7 @@ public class TokenizerService extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	ApacheTokenizer at = null;
+	@Override
 	public void init(){
 		try {
 			at = new ApacheTokenizer(DataDir.result() + "tokenizerData.txt");
@@ -29,6 +31,7 @@ public class TokenizerService extends HttpServlet {
 		}
 	}
 	public void destory() {}
+	@Override
 	public void doGet (final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 		final PrintWriter pw = response.getWriter();
 		final String action = request.getParameter("action");

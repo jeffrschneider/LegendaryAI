@@ -2,6 +2,7 @@ package ai.legendary.core;
 
 
 import java.net.URLEncoder;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 
 public class stringUtils {
@@ -73,7 +74,7 @@ public class stringUtils {
 		}
 		return sc.concat();
 	}
-	public static int[] StringToIntArray(final String input) {
+	public static final int[] StringToIntArray(final String input) {
 		if (input==null) {
 			return null;
 		}
@@ -83,5 +84,17 @@ public class stringUtils {
 			result[index] = Integer.parseInt(chunks[index]);
 		}
 		return result;
+	}
+	public static final void printMembers(final String[] items, final PrintWriter writer) {
+		if (items.length > 0) {
+			writer.write("\"");
+			writer.write(items[0].replaceAll("\"", "\\\""));
+			writer.write("\"");
+		}
+		for (int index = 1; items.length > index; index++) {
+			writer.write(", \"");
+			writer.write(items[index].replaceAll("\"", "\\\""));
+			writer.write("\"");
+		}
 	}
 }

@@ -15,6 +15,6 @@
 	<classpathentry kind="lib" path="C:/Users/natew/Desktop/LegendaryAI/outwardCode/LegendaryAI/GrandUnifiedChunker/WebContent/WEB-INF/lib/stanford-corenlp-3.7.0-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/natew/Desktop/LegendaryAI/outwardCode/LegendaryAI/GrandUnifiedChunker/WebContent/WEB-INF/lib/stanford-english-corenlp-2016-10-31-models.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/natew/Desktop/LegendaryAI/outwardCode/LegendaryAI/infrastructureLibrary.jar"/>
+	<classpathentry kind="lib" path="C:/Users/natew/Desktop/LegendaryAI/outwardCode/LegendaryAI/infrastructureLibrary.zip"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

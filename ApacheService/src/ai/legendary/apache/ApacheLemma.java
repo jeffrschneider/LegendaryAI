@@ -4,8 +4,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 import opennlp.tools.lemmatizer.DictionaryLemmatizer;
-import opennlp.tools.lemmatizer.LemmatizerME;
-import opennlp.tools.lemmatizer.LemmatizerModel;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.tokenize.Tokenizer;

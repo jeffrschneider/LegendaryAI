@@ -55,12 +55,14 @@ public class Noun implements Comparable{
 	public final String JSONexport() {
 		return (("{\"name\": \"" + name) + (("\", \"category\": \"" + category) + "\"}"));
 	}
+	@Override
 	public final String toString(){
 		return this.JSONexport();
 	}
 	public final boolean equals(final Noun input) {
 		return (this.getName().equals(input.getName())) && (this.getCategory().equals(input.getCategory()));
 	}
+	@Override
 	public final int compareTo(final Object arg0) {
 		if (arg0 instanceof Noun) {
 			final Noun arg1 = (Noun) arg0;

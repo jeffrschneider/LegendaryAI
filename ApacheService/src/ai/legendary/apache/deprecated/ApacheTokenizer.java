@@ -1,10 +1,11 @@
-package ai.legendary.apache;
+package ai.legendary.apache.deprecated;
 
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import ai.legendary.core.LineAdd;
 import opennlp.tools.dictionary.Dictionary;
 import opennlp.tools.tokenize.TokenSample;
 import opennlp.tools.tokenize.TokenSampleStream;
