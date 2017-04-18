@@ -9,6 +9,9 @@ import de.mpii.clausie.ClausIE;
 import de.mpii.clausie.Proposition;
 
 public class clausIE {
+	public static final void main(final String[] args) {
+		System.out.println("The pointless main function has been added so the file will generate properly.");
+	}
 	public clausIE(){
 		
 	}
