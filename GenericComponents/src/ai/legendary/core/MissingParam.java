@@ -7,6 +7,12 @@ import java.util.LinkedList;
 import javax.servlet.http.HttpServletResponse;
 
 public class MissingParam {
+	public static final void nullCheck (final Object o){
+		if (o==null) {
+			throw new NullPointerException();
+		}
+		return;
+	}
 	public static final void missingParamJob(final String param, final HttpServletResponse response) throws IOException {
 		final PrintWriter writer = response.getWriter();
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -101,7 +107,26 @@ public class MissingParam {
 		writer.write("{\"statusCode\": 1,\"results\": [");
 		stringUtils.printMembers(results, writer);
 		writer.write("]}");
-		writer.close();		
+		writer.close();
 	}
-	
+	public static final void IEresult(final HttpServletResponse response, final InformationExtractorResult[] results, final boolean labelObjectively) throws IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		final PrintWriter writer = response.getWriter();
+		writer.write("{\"statusCode\": 1,\"results\": [");
+		if (labelObjectively) {
+			InformationExtractorResult.printAsObject(results[0], writer);
+		} else {
+			InformationExtractorResult.printAsArray(results[0], writer);
+		}
+		for (int index = 1; index < results.length; index++) {
+			writer.write(", ");
+			if (labelObjectively) {
+				InformationExtractorResult.printAsObject(results[index], writer);
+			} else {
+				InformationExtractorResult.printAsArray(results[index], writer);
+			}
+		}
+		writer.write("]}");
+		writer.close();
+	}
 }
