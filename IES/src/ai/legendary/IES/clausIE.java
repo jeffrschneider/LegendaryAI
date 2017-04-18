@@ -6,9 +6,7 @@ import java.util.List;
 
 import ai.legendary.core.InformationExtractorResult;
 import de.mpii.clausie.ClausIE;
-import de.mpii.clausie.Clause;
 import de.mpii.clausie.Proposition;
-import edu.stanford.nlp.trees.Tree;
 
 public class clausIE {
 	public clausIE(){
