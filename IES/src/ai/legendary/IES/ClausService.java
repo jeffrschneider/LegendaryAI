@@ -14,6 +14,9 @@ import ai.legendary.core.stringUtils;
 		urlPatterns = "/1/Claus/*"
 		)
 public class ClausService extends HttpServlet {
+	public static final void main(final String[] args) {
+		System.out.println("The pointless main function has been added so the file will generate properly.");
+	}
 	private final clausIE cie = new clausIE();
 	/**
 	 * 
