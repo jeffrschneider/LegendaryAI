@@ -16,6 +16,7 @@
         <pathelement location="WebContent/WEB-INF/lib/stanford-corenlp-3.7.0-models.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/stanford-corenlp-3.7.0-sources.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/stanford-corenlp-3.7.0.jar"/>
+        <pathelement location="../../servlet-api.jar"/>
     </path>
     <path id="EAR Libraries.libraryclasspath"/>
     <path id="InformationExtractorServices.classpath">
@@ -29,6 +30,7 @@
         <pathelement location="WebContent/WEB-INF/lib/jopt-simple-4.4.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/infrastructureLibrary.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/servlet-api.jar"/>
+        <pathelement location="../../servlet-api.jar"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
